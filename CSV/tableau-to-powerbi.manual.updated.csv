@@ -1,0 +1,24 @@
+Test Case ID,Test Description,Expected Result,Actual Result,Status (Pass/Fail)
+TC01,Login with valid credentials,Dashboard loads,Dashboard loads,Pass
+TC02,Login with invalid credentials,Error message shown,Error message shown,Pass
+TC03,Blank Email/Password,Validation error shown,Validation error shown,Pass
+TC04,Access Tableau to Power BI,Converter page loads,Converter page loads,Pass
+TC05,Fill valid Tableau details,Fields accept input,Fields accept input,Pass
+TC06,Convert dashboard,Conversion progress shown,Conversion progress shown,Pass
+TC07,Conversion completes,Output PDF appears,Output PDF appears,Pass
+TC08,Open PDF in new tab,PDF opens and is downloadable,PDF opens and is downloadable,Pass
+TC09,Blank Tableau details,Validation error shown,Validation error shown,Pass
+TC10,Invalid Tableau URL,Error message shown,Error message shown,Pass
+TC11,Unsupported dashboard name,Error message shown,Error message shown,Pass
+TC12,Large dashboard conversion,Conversion completes,Conversion completes,Pass
+TC13,PDF open/download failure,Error message shown,Error message shown,Pass
+TC14,Session timeout during conversion,Conversion fails gracefully and user is redirected to login,,Not Executed
+TC15,Slow network or server delay,Conversion progress indicator persists until conversion completes,,Not Executed
+TC16,Duplicate dashboard name conflict,System prevents duplicate or appends unique suffix to file,,Not Executed
+TC17,File format validation,Only valid PDF is generated,,Not Executed
+TC18,Cross-browser behavior,"Conversion works on Chrome, Firefox, and WebKit",,Not Executed
+TC19,Unauthorized access to Tableau,Error message shown when credentials/site ID not authorized,,Not Executed
+TC20,Multiple conversions in parallel,System processes multiple conversions without failure,,Not Executed
+TC21,UI element presence after login,(Solutions)ⁿ button and Tableau to Power BI link always render,,Not Executed
+TC22,Empty Dashboard Name field,"Validation error shown, conversion not allowed",,Not Executed
+TC23,Logout and re-login behavior,"State resets, fresh session works with new login",,Not Executed

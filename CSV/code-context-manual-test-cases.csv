@@ -1,0 +1,23 @@
+Test Case ID,Test Description,Expected Result,Actual Result,Status
+TC-CC-001,Login with valid credentials (abcd@ngenux.com / admin@123),User successfully logs in and dashboard loads,User logged in successfully and dashboard displayed,Pass
+TC-CC-002,Click on the (Tools)ⁿ button in sidebar,Tools accordion expands showing Code Context option,Tools section expanded showing Code Context and other tools,Pass
+TC-CC-003,Click on Code Context link,Code Context page loads with Browse Procedures tab active,Code Context page loaded with Browse Procedures tab selected,Pass
+TC-CC-004,Verify Browse Procedures tab is active,Browse Procedures tab is selected and table of procedures is visible,Browse Procedures tab active with procedure list table displayed,Pass
+TC-CC-005,Click action button for calculate_average Stored procedure,Procedure details modal/page opens showing metadata,Calculate_average procedure details page opened,Pass
+TC-CC-006,Verify Procedure Metadata heading is visible,Procedure Metadata heading should be displayed,Procedure Metadata heading visible in details view,Pass
+TC-CC-007,Verify Fully Qualified Name display,Fully Qualified Name should show sample_data.ecommerce_db.shopify.calculate_average,Fully Qualified Name displayed correctly,Pass
+TC-CC-008,Verify Database name display,Database should show ecommerce_db,Database displayed as ecommerce_db,Pass
+TC-CC-009,Verify Schema name display,Schema should show shopify,Schema displayed as shopify,Pass
+TC-CC-010,Verify ecommerce_db is clickable,Database name should be interactive/clickable,Database name appears to be clickable element,Pass
+TC-CC-011,Verify shopify is clickable,Schema name should be interactive/clickable,Schema name appears to be clickable element,Pass
+TC-CC-012,Verify SQL Code heading and area,SQL Code heading and code area with bg-zinc-900 class should be visible,SQL Code heading and dark code area displayed correctly,Pass
+TC-CC-013,Navigate back to procedures list,Back to List button should return to procedure list,Successfully navigated back to procedure list,Pass
+TC-CC-014,Open calculate_average procedure again,Procedure details should load again,Procedure details loaded successfully,Pass
+TC-CC-015,Click Parse button,Conversion should start and results should be displayed,Parse button clicked and conversion initiated,Pass
+TC-CC-016,Verify Conversion Results heading,Conversion Results heading should be visible,Conversion Results heading displayed,Pass
+TC-CC-017,Verify Success status,Success status should be shown in conversion results,Success status displayed in results,Pass
+TC-CC-018,Verify conversion timestamp,Conversion timestamp should be displayed,Timestamp showing 8/28/2025 2:04:29 PM displayed,Pass
+TC-CC-019,Verify Business Description tab content,Description pseudo code tables used line count and token count should be visible,All business description elements visible including description pseudo code tables line count and token count,Pass
+TC-CC-020,Verify Stored Procedures Used section,Stored Procedures Used heading and SQL code snippet should be displayed,Stored Procedures Used section displayed with CREATE OR REPLACE PROCEDURE code,Pass
+TC-CC-021,Click Start New Conversion button,Should navigate to new conversion flow or page,Start New Conversion clicked and navigation occurred,Pass
+TC-CC-022,End-to-end workflow completion,Complete workflow from login to start new conversion should work seamlessly,Full workflow completed successfully without errors,Pass
