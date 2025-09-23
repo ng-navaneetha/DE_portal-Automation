@@ -99,12 +99,14 @@ jobs:
           # Parse test results based on actual JSON structure
           if [ "$HAS_SUITES" = "true" ]; then
             echo "Using suites-based parsing (new Playwright format)"
-            # New Playwright format with suites
-            TOTAL_TESTS=$(jq '[.suites[]?.specs[]?.tests[]? | length] | add // 0' $RESULTS_FILE)
-            PASSED_TESTS=$(jq '[.suites[]?.specs[]?.tests[]?.results[]? | select(.status == "passed")] | length' $RESULTS_FILE)
-            FAILED_TESTS=$(jq '[.suites[]?.specs[]?.tests[]?.results[]? | select(.status == "failed")] | length' $RESULTS_FILE)
-            FLAKY_TESTS=$(jq '[.suites[]?.specs[]?.tests[]?.results[]? | select(.status == "flaky")] | length' $RESULTS_FILE)
+            # New Playwright format with suites - count specs (tests) not test results
+            TOTAL_TESTS=$(jq '[.suites[]?.specs[]?] | length' $RESULTS_FILE)
+            PASSED_TESTS=$(jq '[.suites[]?.specs[]? | select(.tests[0].results[0].status == "passed")] | length' $RESULTS_FILE)
+            FAILED_TESTS=$(jq '[.suites[]?.specs[]? | select(.tests[0].results[0].status == "failed")] | length' $RESULTS_FILE)
+            FLAKY_TESTS=$(jq '[.suites[]?.specs[]? | select(.tests[0].results[0].status == "flaky")] | length' $RESULTS_FILE)
             DURATION=$(jq '[.suites[]?.specs[]?.tests[]?.results[]?.duration // 0] | add // 0' $RESULTS_FILE)
+            
+            echo "Parsed counts - Total: $TOTAL_TESTS, Passed: $PASSED_TESTS, Failed: $FAILED_TESTS, Flaky: $FLAKY_TESTS"
           elif [ "$HAS_STATS" = "true" ]; then
             echo "Using stats-based parsing (older format)"
             # Check if it's a placeholder file (created when tests fail early)
@@ -159,12 +161,16 @@ jobs:
           # Get test summary with status - use the format we detected
           summary=""
           if [ "$HAS_SUITES" = "true" ]; then
+            echo "Extracting test summary from suites format"
             # New format: extract from suites
             summary=$(jq -r '
               .suites[]?.specs[]? | 
               select(.title) |
               "• " + .title + " → " + (.tests[0].results[0].status // "unknown")
             ' $RESULTS_FILE 2>/dev/null | head -15)
+            
+            echo "Raw summary output:"
+            echo "$summary"
           fi
           
           # If first approach fails or we have old format, try alternative methods
@@ -175,6 +181,9 @@ jobs:
               select(.title) |
               "• " + .title
             ' $RESULTS_FILE 2>/dev/null | head -15)
+            
+            echo "Alternative summary output:"
+            echo "$summary"
           fi
           
           # If still empty, try extracting with broader selector
@@ -186,6 +195,9 @@ jobs:
               select(.title? and (.title | test("TC|@smoke"; "i"))) |
               "• " + .title
             ' $RESULTS_FILE 2>/dev/null | head -15)
+            
+            echo "Broader summary output:"
+            echo "$summary"
           fi
           
           # If we still have no summary, create a basic one
@@ -194,8 +206,14 @@ jobs:
             summary="• Tests executed - see full report for details"
           fi
           
+          echo "Final summary before Teams formatting:"
+          echo "$summary"
+          
           # Convert to proper Teams format with line breaks for list items
           summary=$(echo "$summary" | sed ':a;N;$!ba;s/\n/\\n/g')
+          
+          echo "Summary after Teams formatting:"
+          echo "$summary"
 
           # Get failed test details if any - use the format we detected
           failed_details=""
