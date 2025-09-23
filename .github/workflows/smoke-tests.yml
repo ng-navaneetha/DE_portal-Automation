@@ -83,7 +83,7 @@ jobs:
           if [ ! -f "$RESULTS_FILE" ]; then
             echo "Results file not found, sending failure notification"
             curl -H 'Content-Type: application/json' \
-              -d "{\"text\": \"🚨 **DE_Portal Test Results**\n\n❌ Test execution failed - no results available\n🕐 Time: $(date)\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n---\n👤 **Sent by:** ${{ github.actor }}\"}" \
+              -d "{\"text\": \"🚨 **DE_Portal Test Results**\n\n❌ Test execution failed - no results available\n🕐 Time: $(TZ='Asia/Kolkata' date +'%a %b %d %Y, %I:%M:%S %p IST')\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n---\n👤 **Sent by:** ng-navaneetha\"}" \
               ${{ secrets.TEAMS_WEBHOOK_URL }}
             exit 0
           fi
@@ -107,7 +107,7 @@ jobs:
             if [ "$TOTAL_FROM_STATS" -eq 0 ]; then
               echo "Empty stats detected, this appears to be a placeholder file"
               curl -H 'Content-Type: application/json' \
-                -d "{\"text\": \"🚨 **DE_Portal Test Results**\n\n❌ Test execution failed - no test results found\n🕐 Time: $(date)\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n---\n👤 **Sent by:** ${{ github.actor }}\"}" \
+                -d "{\"text\": \"🚨 **DE_Portal Test Results**\n\n❌ Test execution failed - no test results found\n🕐 Time: $(TZ='Asia/Kolkata' date +'%a %b %d %Y, %I:%M:%S %p IST')\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n---\n👤 **Sent by:** ng-navaneetha\"}" \
                 ${{ secrets.TEAMS_WEBHOOK_URL }}
               exit 0
             fi
@@ -137,7 +137,7 @@ jobs:
             if [ "$TOTAL_TESTS" -eq 0 ]; then
               echo "No test results found with fallback method"
               curl -H 'Content-Type: application/json' \
-                -d "{\"text\": \"🚨 **DE_Portal Test Results**\n\n❌ Test execution failed - unable to parse results\n🕐 Time: $(date)\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n---\n👤 **Sent by:** ${{ github.actor }}\"}" \
+                -d "{\"text\": \"🚨 **DE_Portal Test Results**\n\n❌ Test execution failed - unable to parse results\n🕐 Time: $(TZ='Asia/Kolkata' date +'%a %b %d %Y, %I:%M:%S %p IST')\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n---\n👤 **Sent by:** ng-navaneetha\"}" \
                 ${{ secrets.TEAMS_WEBHOOK_URL }}
               exit 0
             fi
@@ -240,6 +240,9 @@ jobs:
           # Send comprehensive Teams message with sender information
           curl -H 'Content-Type: application/json' \
             -d "{
-              \"text\": \"$EMOJI **DE_Portal Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Duration: ${DURATION_SEC}s\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n---\\n👤 **Sent by:** ${{ github.actor }} | 🕐 **Time:** $(date)\"
+              \"text\": \"$EMOJI **DE_Portal Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Duration: ${DURATION_SEC}s\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n---\\n👤 **Sent by:** ng-navaneetha | 🕐 **Time:** $(TZ='Asia/Kolkata' date +'%a %b %d %Y, %I:%M:%S %p IST')\"
             }" \
             ${{ secrets.TEAMS_WEBHOOK_URL }}
+
+
+            
