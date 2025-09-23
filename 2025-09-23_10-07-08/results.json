@@ -1,0 +1,302 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/c0b88487012e5852c9e767a923b67855dfa45fde",
+        "commitHash": "c0b88487012e5852c9e767a923b67855dfa45fde",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/17942552108"
+      },
+      "gitCommit": {
+        "shortHash": "c0b8848",
+        "hash": "c0b88487012e5852c9e767a923b67855dfa45fde",
+        "subject": "fix: Improve handling of Playwright test results and reporting",
+        "body": "fix: Improve handling of Playwright test results and reporting\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1758621776000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1758621776000
+        },
+        "branch": "testing_branch"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/c0b88487012e5852c9e767a923b67855dfa45fde",
+            "commitHash": "c0b88487012e5852c9e767a923b67855dfa45fde",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/17942552108"
+          },
+          "gitCommit": {
+            "shortHash": "c0b8848",
+            "hash": "c0b88487012e5852c9e767a923b67855dfa45fde",
+            "subject": "fix: Improve handling of Playwright test results and reporting",
+            "body": "fix: Improve handling of Playwright test results and reporting\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1758621776000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1758621776000
+            },
+            "branch": "testing_branch"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "code-context-complete.spec.js",
+      "file": "code-context-complete.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Code Context - Complete Browse Procedures Flow",
+          "file": "code-context-complete.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC001 @smoke Login - should authenticate with valid credentials",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4093,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Creating new auth session...\n"
+                        },
+                        {
+                          "text": "Auth session saved successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify successful login and dashboard loads",
+                          "duration": 28
+                        }
+                      ],
+                      "startTime": "2025-09-23T10:06:37.506Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-c4a27d3544e12437a291",
+              "file": "code-context-complete.spec.js",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "TC021 @smoke End-to-End Flow Browse Procedures - should complete entire workflow successfully",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 11886,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow",
+                          "duration": 10154
+                        },
+                        {
+                          "title": "Verify workflow completed successfully",
+                          "duration": 3
+                        }
+                      ],
+                      "startTime": "2025-09-23T10:06:44.164Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-2c64e076a7aee90363eb",
+              "file": "code-context-complete.spec.js",
+              "line": 328,
+              "column": 7
+            },
+            {
+              "title": "TC022 @smoke Complete End-to-End Workflow - should verify all critical user journeys",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 12690,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Initial login and dashboard verification",
+                          "duration": 32
+                        },
+                        {
+                          "title": "Navigate to Code Context and verify Browse Procedures tab",
+                          "duration": 196
+                        },
+                        {
+                          "title": "Open procedure and verify all metadata fields",
+                          "duration": 4861
+                        },
+                        {
+                          "title": "Execute parse operation and verify conversion results",
+                          "duration": 5890
+                        },
+                        {
+                          "title": "Verify Business Description tab functionality",
+                          "duration": 33
+                        },
+                        {
+                          "title": "Verify Stored Procedures Used section",
+                          "duration": 6
+                        },
+                        {
+                          "title": "Complete workflow with Start New Conversion",
+                          "duration": 47
+                        },
+                        {
+                          "title": "Final verification - ensure application is in clean state",
+                          "duration": 3
+                        }
+                      ],
+                      "startTime": "2025-09-23T10:06:56.067Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-b6ec6af65e3af753c777",
+              "file": "code-context-complete.spec.js",
+              "line": 377,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-23T10:06:36.638Z",
+    "duration": 32211.085999999996,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
