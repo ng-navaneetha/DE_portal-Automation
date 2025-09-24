@@ -1,0 +1,302 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/52c91e1f3d7b3b51486459e7d4df1b59e23401ad",
+        "commitHash": "52c91e1f3d7b3b51486459e7d4df1b59e23401ad",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/17965688429"
+      },
+      "gitCommit": {
+        "shortHash": "52c91e1",
+        "hash": "52c91e1f3d7b3b51486459e7d4df1b59e23401ad",
+        "subject": "fix: Update Teams notification to include sender information and format timestamp for improved clarity",
+        "body": "fix: Update Teams notification to include sender information and format timestamp for improved clarity\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1758649047000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1758649047000
+        },
+        "branch": "testing_branch"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/52c91e1f3d7b3b51486459e7d4df1b59e23401ad",
+            "commitHash": "52c91e1f3d7b3b51486459e7d4df1b59e23401ad",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/17965688429"
+          },
+          "gitCommit": {
+            "shortHash": "52c91e1",
+            "hash": "52c91e1f3d7b3b51486459e7d4df1b59e23401ad",
+            "subject": "fix: Update Teams notification to include sender information and format timestamp for improved clarity",
+            "body": "fix: Update Teams notification to include sender information and format timestamp for improved clarity\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1758649047000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1758649047000
+            },
+            "branch": "testing_branch"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "code-context-complete.spec.js",
+      "file": "code-context-complete.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Code Context - Complete Browse Procedures Flow",
+          "file": "code-context-complete.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC001 @smoke Login - should authenticate with valid credentials",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4436,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Creating new auth session...\n"
+                        },
+                        {
+                          "text": "Auth session saved successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify successful login and dashboard loads",
+                          "duration": 28
+                        }
+                      ],
+                      "startTime": "2025-09-24T03:48:19.282Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-c4a27d3544e12437a291",
+              "file": "code-context-complete.spec.js",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "TC021 @smoke End-to-End Flow Browse Procedures - should complete entire workflow successfully",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 35366,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow",
+                          "duration": 33767
+                        },
+                        {
+                          "title": "Verify workflow completed successfully",
+                          "duration": 3
+                        }
+                      ],
+                      "startTime": "2025-09-24T03:48:26.180Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-2c64e076a7aee90363eb",
+              "file": "code-context-complete.spec.js",
+              "line": 328,
+              "column": 7
+            },
+            {
+              "title": "TC022 @smoke Complete End-to-End Workflow - should verify all critical user journeys",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17802,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Initial login and dashboard verification",
+                          "duration": 24
+                        },
+                        {
+                          "title": "Navigate to Code Context and verify Browse Procedures tab",
+                          "duration": 212
+                        },
+                        {
+                          "title": "Open procedure and verify all metadata fields",
+                          "duration": 3905
+                        },
+                        {
+                          "title": "Execute parse operation and verify conversion results",
+                          "duration": 12428
+                        },
+                        {
+                          "title": "Verify Business Description tab functionality",
+                          "duration": 28
+                        },
+                        {
+                          "title": "Verify Stored Procedures Used section",
+                          "duration": 6
+                        },
+                        {
+                          "title": "Complete workflow with Start New Conversion",
+                          "duration": 51
+                        },
+                        {
+                          "title": "Final verification - ensure application is in clean state",
+                          "duration": 2
+                        }
+                      ],
+                      "startTime": "2025-09-24T03:49:01.568Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-b6ec6af65e3af753c777",
+              "file": "code-context-complete.spec.js",
+              "line": 377,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-24T03:48:18.401Z",
+    "duration": 61027.842,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
