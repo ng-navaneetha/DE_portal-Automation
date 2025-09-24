@@ -136,7 +136,7 @@ export const TEST_CONSTANTS = {
     EMPTY_FORM: /Please fill in all required fields/i,
     VALIDATION_ERROR: /required|validation|blank/i,
     UNAUTHORIZED_ERROR: /The personal access token you provided is invalid.|error|access denied/i,
-    INVALID_URL_ERROR: /Must be a valid URL|error|URL/i,
+    INVALID_URL_ERROR: /Must be a valid URL/i,
     UNSUPPORTED_ERROR: /unsupported|error|not found/i,
     DOWNLOAD_ERROR: /download failed|error/i,
     DUPLICATE_ERROR: /duplicate|conflict|unique/i,
