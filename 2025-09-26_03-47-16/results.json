@@ -1,0 +1,368 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/1aab3522ea607e4fb6eeb9bb65245d9a418ab019",
+        "commitHash": "1aab3522ea607e4fb6eeb9bb65245d9a418ab019",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/18027252984"
+      },
+      "gitCommit": {
+        "shortHash": "1aab352",
+        "hash": "1aab3522ea607e4fb6eeb9bb65245d9a418ab019",
+        "subject": "feat: Implement Tableau to Power BI conversion page and associated tests",
+        "body": "feat: Implement Tableau to Power BI conversion page and associated tests\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1758708000000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1758708000000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/1aab3522ea607e4fb6eeb9bb65245d9a418ab019",
+            "commitHash": "1aab3522ea607e4fb6eeb9bb65245d9a418ab019",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/18027252984"
+          },
+          "gitCommit": {
+            "shortHash": "1aab352",
+            "hash": "1aab3522ea607e4fb6eeb9bb65245d9a418ab019",
+            "subject": "feat: Implement Tableau to Power BI conversion page and associated tests",
+            "body": "feat: Implement Tableau to Power BI conversion page and associated tests\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1758708000000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1758708000000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "code-context-complete.spec.js",
+      "file": "code-context-complete.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Code Context - Complete Browse Procedures Flow",
+          "file": "code-context-complete.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC001 @smoke Login - should authenticate with valid credentials",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7093,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Creating new auth session...\n"
+                        },
+                        {
+                          "text": "Auth session saved successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify successful login and dashboard loads",
+                          "duration": 29
+                        }
+                      ],
+                      "startTime": "2025-09-26T03:47:19.016Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-c4a27d3544e12437a291",
+              "file": "code-context-complete.spec.js",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "TC021 @smoke End-to-End Flow Browse Procedures - should complete entire workflow successfully",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 17038,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow",
+                          "duration": 12166
+                        },
+                        {
+                          "title": "Verify workflow completed successfully",
+                          "duration": 2
+                        }
+                      ],
+                      "startTime": "2025-09-26T03:47:27.230Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-2c64e076a7aee90363eb",
+              "file": "code-context-complete.spec.js",
+              "line": 328,
+              "column": 7
+            },
+            {
+              "title": "TC022 @smoke Complete End-to-End Workflow - should verify all critical user journeys",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14221,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Initial login and dashboard verification",
+                          "duration": 23
+                        },
+                        {
+                          "title": "Navigate to Code Context and verify Browse Procedures tab",
+                          "duration": 147
+                        },
+                        {
+                          "title": "Open procedure and verify all metadata fields",
+                          "duration": 4356
+                        },
+                        {
+                          "title": "Execute parse operation and verify conversion results",
+                          "duration": 8400
+                        },
+                        {
+                          "title": "Verify Business Description tab functionality",
+                          "duration": 39
+                        },
+                        {
+                          "title": "Verify Stored Procedures Used section",
+                          "duration": 7
+                        },
+                        {
+                          "title": "Complete workflow with Start New Conversion",
+                          "duration": 48
+                        },
+                        {
+                          "title": "Final verification - ensure application is in clean state",
+                          "duration": 2
+                        }
+                      ],
+                      "startTime": "2025-09-26T03:47:44.288Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-b6ec6af65e3af753c777",
+              "file": "code-context-complete.spec.js",
+              "line": 377,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tableau-to-powerbi.spec.js",
+      "file": "tableau-to-powerbi.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Tableau to Power BI Conversion",
+          "file": "tableau-to-powerbi.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@smoke Happy Path - Convert Tableau dashboard and download PDF",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 29251,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        },
+                        {
+                          "text": "✅ Conversion completed successfully\n"
+                        },
+                        {
+                          "text": "✅ PDF download detected: Superstore test_20250926_034820_report.pdf\n"
+                        },
+                        {
+                          "text": "✅ PDF downloaded successfully: Superstore test_20250926_034820_report.pdf\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-09-26T03:47:58.545Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "429b7a3e0171e67b0520-9e3f5f626f9f4ca28286",
+              "file": "tableau-to-powerbi.spec.js",
+              "line": 20,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-09-26T03:47:18.068Z",
+    "duration": 69805.971,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
