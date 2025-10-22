@@ -59,8 +59,10 @@ jobs:
             cp "test-results/results.json" "reports/$ts/results.json"
             echo "✅ Found results.json"
           else
-            echo "❌ No results.json file found"
-            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":0},"suites":[]}' > "reports/$ts/results.json"
+            echo "❌ No results.json file found - creating a detailed fallback file"
+            # Create a more detailed fallback result file with proper structure for failed tests (single line JSON to avoid YAML parsing issues)
+            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":30000},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"title":"Smoke test execution","ok":false,"results":[{"status":"failed","errors":[{"message":"Test execution failed. No results.json file was generated. Check workflow logs for details."}]}]}]}]}]}]}' > "reports/$ts/results.json"
+            echo "✅ Created detailed fallback results.json with proper test structure"
           fi
           
           echo "REPORT_TS=$ts" >> $GITHUB_ENV
@@ -82,8 +84,32 @@ jobs:
       - name: Parse results and send dynamic Teams notification
         if: always()
         run: |
+          # Ensure REPORT_TS exists and is not empty, otherwise set a fallback
+          if [ -z "$REPORT_TS" ]; then
+            echo "⚠️ Warning: REPORT_TS is not set. Using current timestamp as fallback."
+            REPORT_TS=$(date +'%Y-%m-%d_%H-%M-%S')
+            echo "REPORT_TS=$REPORT_TS" >> $GITHUB_ENV
+          fi
+          
           RESULTS_FILE="reports/$REPORT_TS/results.json"
           REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/$REPORT_TS/"
+          
+          # Verify paths for debugging
+          echo "📊 Results file path: $RESULTS_FILE"
+          echo "🔗 Report URL: $REPORT_URL"
+          
+          # Check if results directory exists, create if not
+          if [ ! -d "reports/$REPORT_TS" ]; then
+            echo "⚠️ Creating missing reports directory: reports/$REPORT_TS"
+            mkdir -p "reports/$REPORT_TS"
+          fi
+          
+          # Check if results file exists, create fallback if not
+          if [ ! -f "$RESULTS_FILE" ]; then
+            echo "⚠️ Results file not found, creating fallback file"
+            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":30000},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"title":"Smoke test execution","ok":false,"results":[{"status":"failed","errors":[{"message":"Test execution failed. Results file not found or inaccessible."}]}]}]}]}]}]}' > "$RESULTS_FILE"
+            echo "✅ Created fallback results file at $RESULTS_FILE"
+          fi
           
           # Use the new Node.js Teams notification script
           node << 'EOF'
@@ -212,8 +238,14 @@ jobs:
               const { summary, testDetails, failedTests, hasRealData, error } = results;
               
               if (!hasRealData || error) {
+                // Even with errors, create a structured message with more details
+                let reportSection = '';
+                if (this.options.reportUrl) {
+                  reportSection = `\\n📑 [View Full Report](${this.options.reportUrl})`;
+                }
+                
                 return {
-                  text: `🚨 **DE_Portal Test Results**\\n\\n❌ Test execution failed${error ? ` - ${error}` : ' - no results available'}\\n🕐 Time: ${this.getCurrentTime()}\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n\\n---\\n👤 **Sent by:** ${this.options.sender}`
+                  text: `🚨 **DE_Portal Test Results**\\n\\n❌ Test execution failed${error ? ` - ${error}` : ' - no results available'}\\n\\n� **Summary:**\\n• Total: 1 test\\n• Passed: 0\\n• Failed: 1\\n• Duration: Unknown\\n\\n📋 **Test Details:**\\n• Test execution process ❌\\n\\n**❌ Failed Tests:**\\n• Smoke test execution (failed)\\n  Error: No test results were available. Check workflow logs for details.${reportSection}\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n\\n---\\n👤 **Sent by:** ${this.options.sender} | 🕐 **Time:** ${this.getCurrentTime()}`
                 };
               }
               
@@ -368,8 +400,8 @@ jobs:
           EOF
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          RESULTS_FILE: reports/${{ env.REPORT_TS }}/results.json
-          REPORT_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ env.REPORT_TS }}/
+          RESULTS_FILE: $RESULTS_FILE
+          REPORT_URL: $REPORT_URL
           GITHUB_RUN_ID: ${{ github.run_id }}
 
 
