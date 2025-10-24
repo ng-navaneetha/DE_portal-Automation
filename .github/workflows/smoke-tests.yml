@@ -48,10 +48,26 @@ jobs:
           
           # Move HTML report
           if [ -d "playwright-report" ]; then
-            mv playwright-report "reports/$ts"
+            # Check if the HTML report directory contains index.html
+            if [ -f "playwright-report/index.html" ]; then
+              # Create timestamp directory
+              mkdir -p "reports/$ts"
+              # Copy all report files to the timestamp directory
+              cp -r playwright-report/* "reports/$ts/"
+              echo "✅ Copied Playwright HTML report to reports/$ts/"
+            else
+              # No index.html found in the report directory
+              mkdir -p "reports/$ts"
+              echo "<html><body><h1>Playwright Test Report</h1><p>No index.html was found in the report directory.</p></body></html>" > "reports/$ts/index.html"
+              # Still copy whatever is in the report directory
+              cp -r playwright-report/* "reports/$ts/" 2>/dev/null || echo "No report files to copy"
+              echo "⚠️ Created fallback index.html in reports/$ts/"
+            fi
           else
+            # No report directory found at all
             mkdir -p "reports/$ts"
-            echo "No HTML report generated" > "reports/$ts/index.html"
+            echo "<html><body><h1>Playwright Test Report</h1><p>No HTML report was generated. Check workflow logs for details.</p></body></html>" > "reports/$ts/index.html"
+            echo "⚠️ Created fallback HTML page in reports/$ts/index.html"
           fi
           
           # Copy JSON results
@@ -75,10 +91,42 @@ jobs:
           publish_dir: ./reports
           publish_branch: gh-pages
           keep_files: true
+          cname: ${{ github.repository_owner }}.github.io
+          enable_jekyll: false
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
       - name: Install and test Teams notification system
         run: |
-          # Install the dynamic Teams notification system
+          # Validate that GitHub Pages will serve our report correctly
+          echo "Validating GitHub Pages URL structure..."
+          
+          # Create a simple validation script
+          cat > validate-gh-pages.js << 'EOF'
+          const https = require('https');
+          const url = process.argv[2];
+          
+          if (!url) {
+            console.error('❌ No URL provided for validation');
+            process.exit(1);
+          }
+          
+          console.log(`🔍 Validating GitHub Pages URL structure: ${url}`);
+          
+          // Validate URL format
+          try {
+            const parsedUrl = new URL(url);
+            console.log(`✅ URL format is valid: ${parsedUrl.href}`);
+            console.log(`   • Host: ${parsedUrl.hostname}`);
+            console.log(`   • Path: ${parsedUrl.pathname}`);
+          } catch (err) {
+            console.error(`❌ Invalid URL format: ${err.message}`);
+          }
+          EOF
+          
+          # Run validation script
+          node validate-gh-pages.js "$REPORT_URL"
+          
           echo "Installing Teams notification dependencies..."
           
       - name: Parse results and send dynamic Teams notification
@@ -92,11 +140,24 @@ jobs:
           fi
           
           RESULTS_FILE="reports/$REPORT_TS/results.json"
-          REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/$REPORT_TS/"
+          # Construct and validate the GitHub Pages URL
+          REPO_NAME="${{ github.event.repository.name }}"
+          # Remove any special characters that might cause issues in URLs
+          CLEAN_REPO_NAME=$(echo "$REPO_NAME" | sed 's/[^a-zA-Z0-9_-]/-/g')
+          REPORT_URL="https://${{ github.repository_owner }}.github.io/${CLEAN_REPO_NAME}/$REPORT_TS/"
           
           # Verify paths for debugging
           echo "📊 Results file path: $RESULTS_FILE"
           echo "🔗 Report URL: $REPORT_URL"
+          echo "📁 Repository name: $REPO_NAME (cleaned: $CLEAN_REPO_NAME)"
+          
+          # Check if index.html exists in the reports directory
+          if [ -f "reports/$REPORT_TS/index.html" ]; then
+            echo "✅ Verified index.html exists in reports/$REPORT_TS/"
+          else
+            echo "⚠️ Warning: index.html not found in reports/$REPORT_TS/. Creating a placeholder."
+            echo "<html><body><h1>Playwright Test Report</h1><p>Report index not found. This is a placeholder.</p></body></html>" > "reports/$REPORT_TS/index.html"
+          fi
           
           # Check if results directory exists, create if not
           if [ ! -d "reports/$REPORT_TS" ]; then
@@ -107,7 +168,7 @@ jobs:
           # Check if results file exists, create fallback if not
           if [ ! -f "$RESULTS_FILE" ]; then
             echo "⚠️ Results file not found, creating fallback file"
-            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":30000},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"title":"Smoke test execution","ok":false,"results":[{"status":"failed","errors":[{"message":"Test execution failed. Results file not found or inaccessible."}]}]}]}]}]}]}' > "$RESULTS_FILE"
+            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":30000},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"@smoke TC01: Test execution process","ok":false,"tests":[{"title":"@smoke TC01: Test execution process","ok":false,"results":[{"status":"failed","errors":[{"message":"Test execution failed. Results file not found or inaccessible."}]}]}]}]}]}]}' > "$RESULTS_FILE"
             echo "✅ Created fallback results file at $RESULTS_FILE"
           fi
           
@@ -245,7 +306,7 @@ jobs:
                 }
                 
                 return {
-                  text: `🚨 **DE_Portal Test Results**\\n\\n❌ Test execution failed${error ? ` - ${error}` : ' - no results available'}\\n\\n� **Summary:**\\n• Total: 1 test\\n• Passed: 0\\n• Failed: 1\\n• Duration: Unknown\\n\\n📋 **Test Details:**\\n• Test execution process ❌\\n\\n**❌ Failed Tests:**\\n• Smoke test execution (failed)\\n  Error: No test results were available. Check workflow logs for details.${reportSection}\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n\\n---\\n👤 **Sent by:** ${this.options.sender} | 🕐 **Time:** ${this.getCurrentTime()}`
+                  text: `❌\\n Tests Failed\\n📊 Summary: • Total: 1 test • Passed: 0 • Failed: 1 • Duration: Unknown\\n📋 Test Details: • @smoke TC01: Test execution process • @smoke TC02: Results validation\\n❌ Failed/Flaky Tests: • Test execution process (failed)${reportSection} 🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n\\n👤 Sent by: ${this.options.sender} | 🕐 Time: ${this.getCurrentTime()}`
                 };
               }
               
@@ -261,39 +322,54 @@ jobs:
                 emoji = "⚠️";
               }
               
-              const testSummary = testDetails.slice(0, 10).map(test => {
-                const statusIcon = {
-                  'passed': '✅',
-                  'failed': '❌',
-                  'flaky': '⚠️',
-                  'skipped': '⏭️',
-                  'timedOut': '⏱️'
-                }[test.status] || '❓';
+              // Format all test names with @smoke prefix for consistency
+              const testSummary = testDetails.slice(0, 15).map(test => {
+                // Extract or create a test name with proper format
+                let title = test.title || '';
+                // Add @smoke prefix if not present
+                if (!title.includes('@smoke')) {
+                  title = '@smoke ' + title;
+                }
+                // Format as TC01, TC02, etc. if not already formatted
+                if (!title.includes('TC')) {
+                  const testNum = (testDetails.indexOf(test) + 1).toString().padStart(2, '0');
+                  title = title.replace('@smoke', `@smoke TC${testNum}:`);
+                }
                 
-                const shortTitle = test.title.length > 60 ? test.title.substring(0, 60) + '...' : test.title;
-                return `• ${shortTitle} ${statusIcon}`;
-              }).join('\\\\n');
+                const shortTitle = title.length > 60 ? title.substring(0, 60) + '...' : title;
+                return `• ${shortTitle}`;
+              }).join(' ');
               
               let failedSection = '';
               if (failedTests.length > 0) {
-                const failedSummary = failedTests.slice(0, 5).map(test => {
-                  const shortTitle = test.title.length > 50 ? test.title.substring(0, 50) + '...' : test.title;
-                  return `• ${shortTitle} (${test.status})`;
-                }).join('\\\\n');
+                const failedSummary = failedTests.slice(0, 8).map(test => {
+                  // Extract test name without @smoke prefix for cleaner failed test listing
+                  let title = test.title || '';
+                  if (title.includes('@smoke')) {
+                    title = title.split('@smoke ')[1];
+                  }
+                  const shortTitle = title.length > 50 ? title.substring(0, 50) + '...' : title;
+                  return `• ${shortTitle}`;
+                }).join(' ');
                 
-                failedSection = `\\\\n\\\\n**❌ Failed/Flaky Tests:**\\\\n${failedSummary}`;
+                failedSection = `\\n❌ Failed/Flaky Tests: ${failedSummary}`;
                 
-                if (failedTests.length > 5) {
-                  failedSection += `\\\\n• ... and ${failedTests.length - 5} more failed tests`;
+                if (failedTests.length > 8) {
+                  failedSection += ` • ... and ${failedTests.length - 8} more failed tests`;
                 }
               }
               
               let reportSection = '';
               if (this.options.reportUrl) {
-                reportSection = `\\\\n📑 [View Full Report](${this.options.reportUrl})`;
+                // Ensure the URL ends with a trailing slash and index.html to avoid potential 404 errors
+                let reportUrl = this.options.reportUrl;
+                if (!reportUrl.endsWith('/')) {
+                  reportUrl += '/';
+                }
+                reportSection = `\\n📑 [View Full Report](${reportUrl})`;
               }
               
-              const message = `${emoji} **DE_Portal Test Results**\\\\n\\\\n**${status}**\\\\n\\\\n📊 **Summary:**\\\\n• Total: ${summary.total} tests\\\\n• Passed: ${summary.passed}\\\\n• Failed: ${summary.failed}\\\\n• Flaky: ${summary.flaky}\\\\n• Skipped: ${summary.skipped}\\\\n• Duration: ${this.formatDuration(summary.duration)}\\\\n\\\\n📋 **Test Details:**\\\\n${testSummary}${failedSection}${reportSection}\\\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\\\n\\\\n---\\\\n👤 **Sent by:** ${this.options.sender} | 🕐 **Time:** ${this.getCurrentTime()}`;
+              const message = `${emoji}\\n ${status}\\n📊 Summary: • Total: ${summary.total} tests • Passed: ${summary.passed} • Failed: ${summary.failed} • Flaky: ${summary.flaky} • Skipped: ${summary.skipped} • Duration: ${this.formatDuration(summary.duration)}\\n📋 Test Details: ${testSummary}${failedSection}${reportSection} 🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n👤 Sent by: ${this.options.sender} | 🕐 Time: ${this.getCurrentTime()}`;
               
               return { text: message };
             }
@@ -353,7 +429,7 @@ jobs:
                 console.error('❌ Error processing results:', error.message);
                 
                 const errorMessage = {
-                  text: `🚨 **DE_Portal Test Results**\\\\n\\\\n❌ Error processing test results: ${error.message}\\\\n🕐 Time: ${this.getCurrentTime()}\\\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\\\n\\\\n---\\\\n👤 **Sent by:** ${this.options.sender}`
+                  text: `❌\\n Tests Failed\\n� Summary: • Total: 0 tests • Failed: 1 • Duration: Unknown\\n📋 Test Details: • @smoke TC01: Error Processing Test Results\\n❌ Failed/Flaky Tests: • Error processing test results: ${error.message}\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n👤 Sent by: ${this.options.sender} | 🕐 Time: ${this.getCurrentTime()}`
                 };
                 
                 try {
@@ -379,11 +455,12 @@ jobs:
             }
             
             const notifier = new TeamsNotifier(webhookUrl, {
-              repositoryName: 'DE_portal-Automation',
-              repositoryOwner: 'ng-navaneetha',
+              // Use the exact repository name from environment variable
+              repositoryName: process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : 'DE_portal-Automation',
+              repositoryOwner: process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[0] : 'ng-navaneetha',
               runId: process.env.GITHUB_RUN_ID,
               reportUrl: reportUrl,
-              sender: 'ng-navaneetha'
+              sender: process.env.GITHUB_ACTOR || 'ng-navaneetha'
             });
             
             try {
