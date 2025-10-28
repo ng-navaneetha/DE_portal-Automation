@@ -1,0 +1,721 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/c3b31feeffbbf249974b3b0b4f0a8c410b2cce6a",
+        "commitHash": "c3b31feeffbbf249974b3b0b4f0a8c410b2cce6a",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/18869408468"
+      },
+      "gitCommit": {
+        "shortHash": "c3b31fe",
+        "hash": "c3b31feeffbbf249974b3b0b4f0a8c410b2cce6a",
+        "subject": "updated to show the failed/passed test cases seperately",
+        "body": "updated to show the failed/passed test cases seperately\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1761641846000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1761641846000
+        },
+        "branch": "git-Workflow-Checking"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal-Automation/commit/c3b31feeffbbf249974b3b0b4f0a8c410b2cce6a",
+            "commitHash": "c3b31feeffbbf249974b3b0b4f0a8c410b2cce6a",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal-Automation/actions/runs/18869408468"
+          },
+          "gitCommit": {
+            "shortHash": "c3b31fe",
+            "hash": "c3b31feeffbbf249974b3b0b4f0a8c410b2cce6a",
+            "subject": "updated to show the failed/passed test cases seperately",
+            "body": "updated to show the failed/passed test cases seperately\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1761641846000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1761641846000
+            },
+            "branch": "git-Workflow-Checking"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "code-context-complete.spec.js",
+      "file": "code-context-complete.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Code Context - Complete Browse Procedures Flow",
+          "file": "code-context-complete.spec.js",
+          "line": 12,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC001 @smoke Login - should authenticate with valid credentials",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5777,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Creating new auth session...\n"
+                        },
+                        {
+                          "text": "Auth session saved successfully\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Verify successful login and dashboard loads",
+                          "duration": 28
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:01:53.666Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-c4a27d3544e12437a291",
+              "file": "code-context-complete.spec.js",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "TC021 @smoke End-to-End Flow Browse Procedures - should complete entire workflow successfully",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 249910,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                            "column": 102,
+                            "line": 338
+                          },
+                          "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n\n  336 |       \n  337 |       // Open procedure details\n> 338 |       await page.locator(`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`).click();\n      |                                                                                                      ^\n  339 |       await expect(page.getByRole('heading', { name: 'Procedure Metadata:' })).toBeVisible();\n  340 |       \n  341 |       // Verify metadata elements using specific selectors\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:338:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:329:5"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow",
+                          "duration": 234265,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:338:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:329:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                              "column": 102,
+                              "line": 338
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 336 |\u001b[39m       \n \u001b[90m 337 |\u001b[39m       \u001b[90m// Open procedure details\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 338 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 339 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Procedure Metadata:'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 340 |\u001b[39m       \n \u001b[90m 341 |\u001b[39m       \u001b[90m// Verify metadata elements using specific selectors\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:02:01.409Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium/error-context.md"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 251247,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                            "column": 102,
+                            "line": 338
+                          },
+                          "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n\n  336 |       \n  337 |       // Open procedure details\n> 338 |       await page.locator(`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`).click();\n      |                                                                                                      ^\n  339 |       await expect(page.getByRole('heading', { name: 'Procedure Metadata:' })).toBeVisible();\n  340 |       \n  341 |       // Verify metadata elements using specific selectors\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:338:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:329:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow",
+                          "duration": 238674,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:338:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:329:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                              "column": 102,
+                              "line": 338
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 336 |\u001b[39m       \n \u001b[90m 337 |\u001b[39m       \u001b[90m// Open procedure details\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 338 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 339 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Procedure Metadata:'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 340 |\u001b[39m       \n \u001b[90m 341 |\u001b[39m       \u001b[90m// Verify metadata elements using specific selectors\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:06:12.017Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry1/trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 250353,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                            "column": 102,
+                            "line": 338
+                          },
+                          "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n\n  336 |       \n  337 |       // Open procedure details\n> 338 |       await page.locator(`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`).click();\n      |                                                                                                      ^\n  339 |       await expect(page.getByRole('heading', { name: 'Procedure Metadata:' })).toBeVisible();\n  340 |       \n  341 |       // Verify metadata elements using specific selectors\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:338:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:329:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow",
+                          "duration": 238582,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:338:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:329:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                              "column": 102,
+                              "line": 338
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 336 |\u001b[39m       \n \u001b[90m 337 |\u001b[39m       \u001b[90m// Open procedure details\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 338 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 339 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Procedure Metadata:'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 340 |\u001b[39m       \n \u001b[90m 341 |\u001b[39m       \u001b[90m// Verify metadata elements using specific selectors\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:10:24.311Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-d4934-ntire-workflow-successfully-chromium-retry2/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-2c64e076a7aee90363eb",
+              "file": "code-context-complete.spec.js",
+              "line": 328,
+              "column": 7
+            },
+            {
+              "title": "TC022 @smoke Complete End-to-End Workflow - should verify all critical user journeys",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 240000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 250657,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                            "column": 102,
+                            "line": 389
+                          },
+                          "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n\n  387 |\n  388 |     await test.step('Open procedure and verify all metadata fields', async () => {\n> 389 |       await page.locator(`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`).click();\n      |                                                                                                      ^\n  390 |       await expect(page.getByRole('heading', { name: 'Procedure Metadata:' })).toBeVisible();\n  391 |       await expect(page.getByText('sample_data.ecommerce_db.shopify.calculate_average')).toBeVisible();\n  392 |       await expect(page.locator('text=/Database:\\\\s*ecommerce_db/')).toBeVisible();\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:389:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:388:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Initial login and dashboard verification",
+                          "duration": 30
+                        },
+                        {
+                          "title": "Navigate to Code Context and verify Browse Procedures tab",
+                          "duration": 134
+                        },
+                        {
+                          "title": "Open procedure and verify all metadata fields",
+                          "duration": 238433,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:389:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:388:16",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                              "column": 102,
+                              "line": 389
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 387 |\u001b[39m\n \u001b[90m 388 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Open procedure and verify all metadata fields'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 389 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 390 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Procedure Metadata:'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 391 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'sample_data.ecommerce_db.shopify.calculate_average'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 392 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Database:\\\\s*ecommerce_db/'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:14:35.405Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium/error-context.md"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 249906,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                            "column": 102,
+                            "line": 389
+                          },
+                          "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n\n  387 |\n  388 |     await test.step('Open procedure and verify all metadata fields', async () => {\n> 389 |       await page.locator(`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`).click();\n      |                                                                                                      ^\n  390 |       await expect(page.getByRole('heading', { name: 'Procedure Metadata:' })).toBeVisible();\n  391 |       await expect(page.getByText('sample_data.ecommerce_db.shopify.calculate_average')).toBeVisible();\n  392 |       await expect(page.locator('text=/Database:\\\\s*ecommerce_db/')).toBeVisible();\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:389:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:388:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "steps": [
+                        {
+                          "title": "Initial login and dashboard verification",
+                          "duration": 37
+                        },
+                        {
+                          "title": "Navigate to Code Context and verify Browse Procedures tab",
+                          "duration": 172
+                        },
+                        {
+                          "title": "Open procedure and verify all metadata fields",
+                          "duration": 238475,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:389:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:388:16",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                              "column": 102,
+                              "line": 389
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 387 |\u001b[39m\n \u001b[90m 388 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Open procedure and verify all metadata fields'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 389 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 390 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Procedure Metadata:'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 391 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'sample_data.ecommerce_db.shopify.calculate_average'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 392 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Database:\\\\s*ecommerce_db/'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:18:46.804Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry1/trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 250644,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 240000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                            "column": 102,
+                            "line": 389
+                          },
+                          "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n\n  387 |\n  388 |     await test.step('Open procedure and verify all metadata fields', async () => {\n> 389 |       await page.locator(`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`).click();\n      |                                                                                                      ^\n  390 |       await expect(page.getByRole('heading', { name: 'Procedure Metadata:' })).toBeVisible();\n  391 |       await expect(page.getByText('sample_data.ecommerce_db.shopify.calculate_average')).toBeVisible();\n  392 |       await expect(page.locator('text=/Database:\\\\s*ecommerce_db/')).toBeVisible();\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:389:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:388:16"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "steps": [
+                        {
+                          "title": "Initial login and dashboard verification",
+                          "duration": 31
+                        },
+                        {
+                          "title": "Navigate to Code Context and verify Browse Procedures tab",
+                          "duration": 202
+                        },
+                        {
+                          "title": "Open procedure and verify all metadata fields",
+                          "duration": 238338,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 240000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('tr:has-text(\"calculate_average\") button[data-slot=\"tooltip-trigger\"]')\u001b[22m\n\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:389:102\n    at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js:388:16",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/code-context-complete.spec.js",
+                              "column": 102,
+                              "line": 389
+                            },
+                            "snippet": "\u001b[0m \u001b[90m 387 |\u001b[39m\n \u001b[90m 388 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'Open procedure and verify all metadata fields'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 389 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m`tr:has-text(\"${procedureData.name}\") button[data-slot=\"tooltip-trigger\"]`\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 390 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m'Procedure Metadata:'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 391 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(\u001b[32m'sample_data.ecommerce_db.shopify.calculate_average'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 392 |\u001b[39m       \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=/Database:\\\\s*ecommerce_db/'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2025-10-28T09:22:57.763Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/test-results/code-context-complete-Code-1d753--all-critical-user-journeys-chromium-retry2/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "aeb03176cd7b17660397-b6ec6af65e3af753c777",
+              "file": "code-context-complete.spec.js",
+              "line": 377,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tableau-to-powerbi.spec.js",
+      "file": "tableau-to-powerbi.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Tableau to Power BI Conversion",
+          "file": "tableau-to-powerbi.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@smoke Happy Path - Convert Tableau dashboard and download PDF",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 19150,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        },
+                        {
+                          "text": "✅ Conversion completed successfully\n"
+                        },
+                        {
+                          "text": "✅ PDF download detected: Superstore test_20251028_092721_report.pdf\n"
+                        },
+                        {
+                          "text": "✅ PDF downloaded successfully: Superstore test_20251028_092721_report.pdf\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-10-28T09:27:09.118Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "429b7a3e0171e67b0520-9e3f5f626f9f4ca28286",
+              "file": "tableau-to-powerbi.spec.js",
+              "line": 20,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-10-28T09:01:52.739Z",
+    "duration": 1535668.48,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
