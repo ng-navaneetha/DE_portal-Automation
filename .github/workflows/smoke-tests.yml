@@ -1,4 +1,4 @@
-name: NgenStudio test Report
+name: DE Hub Portal test Report
 
 on:
   schedule:
@@ -49,6 +49,12 @@ jobs:
           npx playwright test --grep @smoke  || test_exit_code=$?
           echo "Test execution completed with exit code: ${test_exit_code:-0}"
           
+          # Debug: List available files
+          echo "=== Available files after test execution ==="
+          ls -la test-results/ 2>/dev/null || echo "No test-results directory found"
+          ls -la *.json 2>/dev/null || echo "No JSON files in root directory"
+          echo "============================================"
+          
           # Move reports and handle missing files gracefully
           if [ -d "playwright-report" ]; then
             mkdir -p "reports/$ts"
@@ -61,12 +67,20 @@ jobs:
           fi
           
           # Copy (don't move) results.json to ensure it remains available
-          if [ -f "results.json" ]; then
+          # Always check test-results directory first since that's where Playwright puts the JSON report
+          if [ -f "test-results/results.json" ]; then
+            echo "Found results.json in test-results directory"
+            cp test-results/results.json "reports/$ts/results.json"
+            echo "Copied results.json to reports/$ts/results.json"
+            # Verify the copied file has real test data
+            test_count=$(jq -r '(.stats.expected + .stats.unexpected + .stats.flaky + .stats.skipped) // 0' "reports/$ts/results.json" 2>/dev/null || echo "0")
+            echo "Verified: Found $test_count total tests in results file"
+          elif [ -f "results.json" ]; then
             echo "Found results.json in root directory"
             cp results.json "reports/$ts/results.json"
             echo "Copied results.json to reports/$ts/results.json"
           else
-            echo "No results.json file found - tests may have failed during execution"
+            echo "No results.json file found in test-results/ or root directory - tests may have failed during execution"
             # Create a more detailed minimal results file for failed execution as a single line JSON
             # to avoid YAML parsing issues with heredoc
             # Default duration if test_exit_code isn't set
@@ -100,16 +114,26 @@ jobs:
           
           # Check if results file exists and has actual test data
           if [ ! -f "$RESULTS_FILE" ]; then
-            echo "Results file not found, creating minimal results file with failure data"
-            # Create a minimal results file that includes failed test information
-            mkdir -p "reports/$REPORT_TS"
-            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":0},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"results":[{"status":"failed","errors":[{"message":"Test execution failed - results.json could not be generated. Check logs for details."}]}]}]}]}]}]}' > "$RESULTS_FILE"
-            echo "Created minimal results file with failure information"
-            # Continue execution to use this minimal file
+            echo "Results file not found at $RESULTS_FILE"
+            
+            # Check if original file exists in test-results
+            if [ -f "test-results/results.json" ]; then
+              echo "Found original results file in test-results directory, copying it"
+              mkdir -p "reports/$REPORT_TS"
+              cp "test-results/results.json" "$RESULTS_FILE"
+              echo "Successfully copied results file"
+            else
+              echo "No results file found in test-results directory either, creating minimal results file with failure data"
+              # Create a minimal results file that includes failed test information
+              mkdir -p "reports/$REPORT_TS"
+              echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":0},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"results":[{"status":"failed","errors":[{"message":"Test execution failed - results.json could not be generated. Check logs for details."}]}]}]}]}]}]}' > "$RESULTS_FILE"
+              echo "Created minimal results file with failure information"
+            fi
           fi
           
-          echo "✅ Results file found. First 30 lines:"
-          head -30 "$RESULTS_FILE"
+          echo "✅ Results file found at: $RESULTS_FILE"
+          echo "First 50 lines of results file:"
+          head -50 "$RESULTS_FILE"
           echo "--- End debug info ---"
 
           # Check if we have valid test data, but don't exit if tests failed
@@ -151,28 +175,30 @@ jobs:
             EMOJI="⚠️"
           fi
 
-          # Get test summary with status - using correct spec-based approach
+          # Get test summary with status - using correct Playwright JSON structure
           summary=$(jq -r '
-            .suites[].suites[]?.specs[] // empty | 
-            select(.title) |
-            if .ok == true and (.tests[].results | map(.status) | all(. == "passed")) then
-              "• " + .title + " → ✅ passed"
-            elif .ok == false or (.tests[].results | map(.status) | any(. == "failed")) then
-              "• " + .title + " → ❌ failed"  
-            elif .ok == true and (.tests[].results | map(.status) | any(. == "flaky")) then
-              "• " + .title + " → ⚠️ flaky"
-            else
-              "• " + .title + " → ❓ unknown"
-            end
+            [.. | objects | select(.title? and .tests? and (.file? | contains(".spec.js")))] |
+            map(
+              if (.tests[].status == "passed") then
+                "• " + .title + " → ✅ passed"
+              elif (.tests[].status == "unexpected") then
+                "• " + .title + " → ❌ failed"
+              elif (.tests[].status == "flaky") then  
+                "• " + .title + " → ⚠️ flaky"
+              elif (.tests[].status == "skipped") then
+                "• " + .title + " → ⏭️ skipped"
+              else
+                "• " + .title + " → ❓ " + (.tests[].status // "unknown")
+              end
+            )[] 
           ' $RESULTS_FILE 2>/dev/null | head -15)
           
           # Fallback to simple spec listing if complex status parsing fails
           if [ -z "$summary" ]; then
             echo "Complex status parsing failed, falling back to simple spec listing"
             summary=$(jq -r '
-              .suites[].suites[]?.specs[] // empty | 
-              select(.title) |
-              "• " + .title
+              [.. | objects | select(.title? and .tests? and (.file? | contains(".spec.js")))] |
+              map("• " + .title)[]
             ' $RESULTS_FILE 2>/dev/null | head -15)
           fi
           
@@ -185,28 +211,28 @@ jobs:
           # Convert to proper Teams format with line breaks for list items
           summary=$(echo "$summary" | sed ':a;N;$!ba;s/\n/\\n/g')
 
-          # Get failed test details if any - using spec-based approach with error messages
+          # Get failed test details if any - using Playwright JSON structure with error messages
           failed_details=""
           if [ "$FAILED_TESTS" -gt 0 ] || [ "$FLAKY_TESTS" -gt 0 ]; then
             # Get failed/flaky tests with more detailed error messages
             failed_details=$(jq -r '
-              .suites[].suites[]?.specs[] // empty | 
-              select(.title) |
-              select(.ok == false or 
-                     (.tests[].results | map(.status) | any(. == "failed" or . == "flaky"))) |
-              if (.tests[].results | map(.status) | any(. == "failed")) then
-                "• " + .title + " (failed)" + 
-                (if (.tests[].results[].errors[0].message | length > 0) then
-                  "\\n  Error: " + (.tests[].results[].errors[0].message | tostring | .[0:150] + if (length > 150) then "..." else "" end)
-                else "" end)
-              elif (.tests[].results | map(.status) | any(. == "flaky")) then
-                "• " + .title + " (flaky)" +
-                (if (.tests[].results[].errors[0].message | length > 0) then 
-                  "\\n  Info: " + (.tests[].results[].errors[0].message | tostring | .[0:150] + if (length > 150) then "..." else "" end)
-                else "" end)
-              else
-                "• " + .title + " (unknown issue)"
-              end
+              [.. | objects | select(.title? and .tests? and (.file? | contains(".spec.js")))] |
+              map(
+                select(.tests[].status == "unexpected" or .tests[].status == "flaky") |
+                if (.tests[].status == "unexpected") then
+                  "• " + .title + " (failed)" + 
+                  (if (.tests[].results[0].error.message | length > 0) then
+                    "\\n  Error: " + (.tests[].results[0].error.message | tostring | gsub("\\u001b\\[[0-9;]*m"; "") | .[0:150] + if (length > 150) then "..." else "" end)
+                  else "" end)
+                elif (.tests[].status == "flaky") then
+                  "• " + .title + " (flaky)" +
+                  (if (.tests[].results[0].error.message | length > 0) then 
+                    "\\n  Info: " + (.tests[].results[0].error.message | tostring | gsub("\\u001b\\[[0-9;]*m"; "") | .[0:150] + if (length > 150) then "..." else "" end)
+                  else "" end)
+                else
+                  "• " + .title + " (unknown issue)"
+                end
+              )[]
             ' $RESULTS_FILE 2>/dev/null | head -10)
             
             # Convert to single line and add header if we have details
