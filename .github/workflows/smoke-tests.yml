@@ -135,6 +135,11 @@ jobs:
           echo "First 50 lines of results file:"
           head -50 "$RESULTS_FILE"
           echo "--- End debug info ---"
+          
+          # Debug: Show what test specs we find
+          echo "=== Debug: Found test specs ==="
+          jq -r '[.. | objects | select(.title? and .tests? and (.file? | contains(".spec.js")))] | map(.title + " → " + (.tests[].status // "no-status"))[]' $RESULTS_FILE 2>/dev/null || echo "Failed to parse test specs"
+          echo "=== End debug ==="
 
           # Check if we have valid test data, but don't exit if tests failed
           TOTAL_FROM_STATS=$(jq -r '.stats.expected + .stats.unexpected + .stats.flaky // 0' $RESULTS_FILE 2>/dev/null || echo "0")
@@ -179,7 +184,7 @@ jobs:
           summary=$(jq -r '
             [.. | objects | select(.title? and .tests? and (.file? | contains(".spec.js")))] |
             map(
-              if (.tests[].status == "passed") then
+              if (.tests[].status == "expected") then
                 "• " + .title + " → ✅ passed"
               elif (.tests[].status == "unexpected") then
                 "• " + .title + " → ❌ failed"
@@ -261,6 +266,6 @@ jobs:
           # Send comprehensive Teams message
           curl -H 'Content-Type: application/json' \
             -d "{
-              \"text\": \"$EMOJI **Ngen Studio Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Skipped: $SKIPPED_TESTS\\n• Duration: ${DURATION_SEC}s (${DURATION_MIN}m)\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n🕒 **Run:** $CURRENT_DATE\\n👤 **Trigger:** $TRIGGER_INFO\"
+              \"text\": \"$EMOJI **DE Hub Portal Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Skipped: $SKIPPED_TESTS\\n• Duration: ${DURATION_SEC}s (${DURATION_MIN}m)\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n🕒 **Run:** $CURRENT_DATE\\n👤 **Trigger:** $TRIGGER_INFO\"
             }" \
             ${{ secrets.TEAMS_WEBHOOK_URL }}
