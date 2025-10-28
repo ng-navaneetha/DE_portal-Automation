@@ -1,4 +1,4 @@
-name: DE_Portal test Report
+name: NgenStudio test Report
 
 on:
   schedule:
@@ -34,452 +34,207 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Install additional tools
-        run: sudo apt-get update && sudo apt-get install -y curl
+        run: sudo apt-get update && sudo apt-get install -y bc jq
 
       - name: Run Playwright smoke tests with HTML + JSON report
         id: tests
-        continue-on-error: true
+        continue-on-error: true  # Continue workflow even if tests fail
         run: |
           mkdir -p reports
+          # Run tests with explicit JSON and HTML reporters to ensure results.json is always generated
           ts=$(date +'%Y-%m-%d_%H-%M-%S')
+          echo "Running Playwright tests with @smoke tag"
           
-          # Run tests with explicit JSON reporter
-          npx playwright test --grep @smoke 
+          # Run tests with explicit reporters - capture exit code for later use
+          npx playwright test --grep @smoke  || test_exit_code=$?
+          echo "Test execution completed with exit code: ${test_exit_code:-0}"
           
-          # Move HTML report
+          # Move reports and handle missing files gracefully
           if [ -d "playwright-report" ]; then
-            # Check if the HTML report directory contains index.html
-            if [ -f "playwright-report/index.html" ]; then
-              # Create timestamp directory
-              mkdir -p "reports/$ts"
-              # Copy all report files to the timestamp directory
-              cp -r playwright-report/* "reports/$ts/"
-              echo "✅ Copied Playwright HTML report to reports/$ts/"
-            else
-              # No index.html found in the report directory
-              mkdir -p "reports/$ts"
-              echo "<html><body><h1>Playwright Test Report</h1><p>No index.html was found in the report directory.</p></body></html>" > "reports/$ts/index.html"
-              # Still copy whatever is in the report directory
-              cp -r playwright-report/* "reports/$ts/" 2>/dev/null || echo "No report files to copy"
-              echo "⚠️ Created fallback index.html in reports/$ts/"
-            fi
-          else
-            # No report directory found at all
             mkdir -p "reports/$ts"
-            echo "<html><body><h1>Playwright Test Report</h1><p>No HTML report was generated. Check workflow logs for details.</p></body></html>" > "reports/$ts/index.html"
-            echo "⚠️ Created fallback HTML page in reports/$ts/index.html"
+            cp -r playwright-report/* "reports/$ts/"
+            echo "HTML report copied to reports/$ts"
+          else
+            mkdir -p "reports/$ts"
+            echo "<html><body><h1>Test Execution Failed</h1><p>No HTML report was generated. Please check the workflow logs for details.</p></body></html>" > "reports/$ts/index.html"
+            echo "Created basic HTML page in reports/$ts/index.html"
           fi
           
-          # Copy JSON results
-          if [ -f "test-results/results.json" ]; then
-            cp "test-results/results.json" "reports/$ts/results.json"
-            echo "✅ Found results.json"
+          # Copy (don't move) results.json to ensure it remains available
+          if [ -f "results.json" ]; then
+            echo "Found results.json in root directory"
+            cp results.json "reports/$ts/results.json"
+            echo "Copied results.json to reports/$ts/results.json"
           else
-            echo "❌ No results.json file found - creating a detailed fallback file"
-            # Create a more detailed fallback result file with proper structure for failed tests (single line JSON to avoid YAML parsing issues)
-            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":30000},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"title":"Smoke test execution","ok":false,"results":[{"status":"failed","errors":[{"message":"Test execution failed. No results.json file was generated. Check workflow logs for details."}]}]}]}]}]}]}' > "reports/$ts/results.json"
-            echo "✅ Created detailed fallback results.json with proper test structure"
+            echo "No results.json file found - tests may have failed during execution"
+            # Create a more detailed minimal results file for failed execution as a single line JSON
+            # to avoid YAML parsing issues with heredoc
+            # Default duration if test_exit_code isn't set
+            if [ -z "$test_exit_code" ]; then
+              DURATION=15000
+            else
+              DURATION=30000
+            fi
+            ERROR_MSG="Test execution failed with exit code ${test_exit_code:-unknown}. Check workflow logs for details."
+            
+            echo "{\"stats\":{\"expected\":0,\"unexpected\":1,\"flaky\":0,\"skipped\":0,\"duration\":$DURATION},\"suites\":[{\"title\":\"Test Execution\",\"suites\":[{\"title\":\"Smoke Tests\",\"specs\":[{\"title\":\"Test execution process\",\"ok\":false,\"tests\":[{\"title\":\"Smoke test execution\",\"ok\":false,\"results\":[{\"status\":\"failed\",\"errors\":[{\"message\":\"$ERROR_MSG\"}]}]}]}]}]}]}" > "reports/$ts/results.json"
+            
+            echo "Created detailed results.json with proper structure in reports/$ts/results.json"
           fi
           
           echo "REPORT_TS=$ts" >> $GITHUB_ENV
 
       - name: Deploy Playwright reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: always()
+        if: always()  # Always deploy reports, even if tests failed
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
           publish_branch: gh-pages
-          keep_files: true
-          cname: ${{ github.repository_owner }}.github.io
-          enable_jekyll: false
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          keep_files: true  # keep older reports instead of deleting them
 
-      - name: Install and test Teams notification system
+      - name: Parse results and send summary to Teams
+        if: always()  # Always send Teams notification, regardless of test outcome
         run: |
-          # Validate that GitHub Pages will serve our report correctly
-          echo "Validating GitHub Pages URL structure..."
-          
-          # Create a simple validation script
-          cat > validate-gh-pages.js << 'EOF'
-          const https = require('https');
-          const url = process.argv[2];
-          
-          if (!url) {
-            console.error('❌ No URL provided for validation');
-            process.exit(1);
-          }
-          
-          console.log(`🔍 Validating GitHub Pages URL structure: ${url}`);
-          
-          // Validate URL format
-          try {
-            const parsedUrl = new URL(url);
-            console.log(`✅ URL format is valid: ${parsedUrl.href}`);
-            console.log(`   • Host: ${parsedUrl.hostname}`);
-            console.log(`   • Path: ${parsedUrl.pathname}`);
-          } catch (err) {
-            console.error(`❌ Invalid URL format: ${err.message}`);
-          }
-          EOF
-          
-          # Run validation script
-          node validate-gh-pages.js "$REPORT_URL"
-          
-          echo "Installing Teams notification dependencies..."
-          
-      - name: Parse results and send dynamic Teams notification
-        if: always()
-        run: |
-          # Ensure REPORT_TS exists and is not empty, otherwise set a fallback
-          if [ -z "$REPORT_TS" ]; then
-            echo "⚠️ Warning: REPORT_TS is not set. Using current timestamp as fallback."
-            REPORT_TS=$(date +'%Y-%m-%d_%H-%M-%S')
-            echo "REPORT_TS=$REPORT_TS" >> $GITHUB_ENV
-          fi
-          
           RESULTS_FILE="reports/$REPORT_TS/results.json"
-          # Construct and validate the GitHub Pages URL
-          REPO_NAME="${{ github.event.repository.name }}"
-          # Remove any special characters that might cause issues in URLs
-          CLEAN_REPO_NAME=$(echo "$REPO_NAME" | sed 's/[^a-zA-Z0-9_-]/-/g')
-          REPORT_URL="https://${{ github.repository_owner }}.github.io/${CLEAN_REPO_NAME}/$REPORT_TS/"
           
-          # Verify paths for debugging
-          echo "📊 Results file path: $RESULTS_FILE"
-          echo "🔗 Report URL: $REPORT_URL"
-          echo "📁 Repository name: $REPO_NAME (cleaned: $CLEAN_REPO_NAME)"
-          
-          # Check if index.html exists in the reports directory
-          if [ -f "reports/$REPORT_TS/index.html" ]; then
-            echo "✅ Verified index.html exists in reports/$REPORT_TS/"
-          else
-            echo "⚠️ Warning: index.html not found in reports/$REPORT_TS/. Creating a placeholder."
-            echo "<html><body><h1>Playwright Test Report</h1><p>Report index not found. This is a placeholder.</p></body></html>" > "reports/$REPORT_TS/index.html"
-          fi
-          
-          # Check if results directory exists, create if not
-          if [ ! -d "reports/$REPORT_TS" ]; then
-            echo "⚠️ Creating missing reports directory: reports/$REPORT_TS"
-            mkdir -p "reports/$REPORT_TS"
-          fi
-          
-          # Check if results file exists, create fallback if not
+          # Check if results file exists and has actual test data
           if [ ! -f "$RESULTS_FILE" ]; then
-            echo "⚠️ Results file not found, creating fallback file"
-            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":30000},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"@smoke TC01: Test execution process","ok":false,"tests":[{"title":"@smoke TC01: Test execution process","ok":false,"results":[{"status":"failed","errors":[{"message":"Test execution failed. Results file not found or inaccessible."}]}]}]}]}]}]}' > "$RESULTS_FILE"
-            echo "✅ Created fallback results file at $RESULTS_FILE"
+            echo "Results file not found, creating minimal results file with failure data"
+            # Create a minimal results file that includes failed test information
+            mkdir -p "reports/$REPORT_TS"
+            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":0},"suites":[{"title":"Test Execution","suites":[{"title":"Smoke Tests","specs":[{"title":"Test execution process","ok":false,"tests":[{"results":[{"status":"failed","errors":[{"message":"Test execution failed - results.json could not be generated. Check logs for details."}]}]}]}]}]}]}' > "$RESULTS_FILE"
+            echo "Created minimal results file with failure information"
+            # Continue execution to use this minimal file
           fi
           
-          # Use the new Node.js Teams notification script
-          node << 'EOF'
-          const fs = require('fs');
-          const https = require('https');
-          
-          class TeamsNotifier {
-            constructor(webhookUrl, options = {}) {
-              this.webhookUrl = webhookUrl;
-              this.options = {
-                repositoryName: options.repositoryName || 'DE_portal-Automation',
-                repositoryOwner: options.repositoryOwner || 'ng-navaneetha',
-                runId: options.runId || process.env.GITHUB_RUN_ID || 'unknown',
-                reportUrl: options.reportUrl || null,
-                sender: options.sender || 'ng-navaneetha',
-                timezone: options.timezone || 'Asia/Kolkata',
-                ...options
-              };
-            }
-            
-            parseResults(resultsFilePath) {
-              try {
-                if (!fs.existsSync(resultsFilePath)) {
-                  throw new Error(`Results file not found: ${resultsFilePath}`);
-                }
-                
-                const rawData = fs.readFileSync(resultsFilePath, 'utf8');
-                const data = JSON.parse(rawData);
-                
-                const stats = data.stats || {};
-                const summary = {
-                  total: (stats.expected || 0) + (stats.unexpected || 0) + (stats.flaky || 0) + (stats.skipped || 0),
-                  passed: stats.expected || 0,
-                  failed: stats.unexpected || 0,
-                  flaky: stats.flaky || 0,
-                  skipped: stats.skipped || 0,
-                  duration: stats.duration || 0,
-                  startTime: stats.startTime || new Date().toISOString()
-                };
-                
-                const testDetails = this.extractTestDetails(data);
-                const failedTests = this.extractFailedTests(data);
-                
-                return {
-                  summary,
-                  testDetails,
-                  failedTests,
-                  hasRealData: summary.total > 0
-                };
-                
-              } catch (error) {
-                console.error('Error parsing results:', error.message);
-                return {
-                  summary: { total: 0, passed: 0, failed: 1, flaky: 0, skipped: 0, duration: 0 },
-                  testDetails: [],
-                  failedTests: [],
-                  hasRealData: false,
-                  error: error.message
-                };
-              }
-            }
-            
-            extractTestDetails(data) {
-              const tests = [];
-              
-              const extractFromSuite = (suite) => {
-                if (suite.specs && Array.isArray(suite.specs)) {
-                  suite.specs.forEach(spec => {
-                    const test = spec.tests?.[0];
-                    const result = test?.results?.[0];
-                    const status = result?.status || 'unknown';
-                    
-                    tests.push({
-                      title: spec.title,
-                      status: status,
-                      duration: result?.duration || 0,
-                      file: spec.file || suite.file || '',
-                      error: result?.errors?.[0]?.message || null
-                    });
-                  });
-                }
-                
-                if (suite.suites && Array.isArray(suite.suites)) {
-                  suite.suites.forEach(extractFromSuite);
-                }
-              };
-              
-              if (data.suites && Array.isArray(data.suites)) {
-                data.suites.forEach(extractFromSuite);
-              }
-              
-              return tests;
-            }
-            
-            extractFailedTests(data) {
-              const allTests = this.extractTestDetails(data);
-              return allTests.filter(test => test.status !== 'passed' && test.status !== 'skipped');
-            }
-            
-            formatDuration(milliseconds) {
-              const seconds = Math.floor(milliseconds / 1000);
-              const minutes = Math.floor(seconds / 60);
-              
-              if (minutes > 0) {
-                return `${minutes}m ${seconds % 60}s`;
-              }
-              return `${seconds}s`;
-            }
-            
-            getCurrentTime() {
-              const now = new Date();
-              return now.toLocaleString('en-IN', {
-                timeZone: this.options.timezone,
-                weekday: 'short',
-                year: 'numeric',
-                month: 'short',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true
-              }) + ' IST';
-            }
-            
-            generateMessage(results) {
-              const { summary, testDetails, failedTests, hasRealData, error } = results;
-              
-              if (!hasRealData || error) {
-                // Even with errors, create a structured message with more details
-                let reportSection = '';
-                if (this.options.reportUrl) {
-                  reportSection = `\\n📑 [View Full Report](${this.options.reportUrl})`;
-                }
-                
-                return {
-                  text: `❌\\n Tests Failed\\n📊 Summary: • Total: 1 test • Passed: 0 • Failed: 1 • Duration: Unknown\\n📋 Test Details: • @smoke TC01: Test execution process • @smoke TC02: Results validation\\n❌ Failed/Flaky Tests: • Test execution process (failed)${reportSection} 🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n\\n👤 Sent by: ${this.options.sender} | 🕐 Time: ${this.getCurrentTime()}`
-                };
-              }
-              
-              let status, emoji;
-              if (summary.failed === 0 && summary.flaky === 0) {
-                status = "✅ All Tests Passed";
-                emoji = "🎉";
-              } else if (summary.failed > 0) {
-                status = "❌ Tests Failed";
-                emoji = "🚨";
-              } else {
-                status = "⚠️ Flaky Tests Detected";
-                emoji = "⚠️";
-              }
-              
-              // Format all test names with @smoke prefix for consistency
-              const testSummary = testDetails.slice(0, 15).map(test => {
-                // Extract or create a test name with proper format
-                let title = test.title || '';
-                // Add @smoke prefix if not present
-                if (!title.includes('@smoke')) {
-                  title = '@smoke ' + title;
-                }
-                // Format as TC01, TC02, etc. if not already formatted
-                if (!title.includes('TC')) {
-                  const testNum = (testDetails.indexOf(test) + 1).toString().padStart(2, '0');
-                  title = title.replace('@smoke', `@smoke TC${testNum}:`);
-                }
-                
-                const shortTitle = title.length > 60 ? title.substring(0, 60) + '...' : title;
-                return `• ${shortTitle}`;
-              }).join(' ');
-              
-              let failedSection = '';
-              if (failedTests.length > 0) {
-                const failedSummary = failedTests.slice(0, 8).map(test => {
-                  // Extract test name without @smoke prefix for cleaner failed test listing
-                  let title = test.title || '';
-                  if (title.includes('@smoke')) {
-                    title = title.split('@smoke ')[1];
-                  }
-                  const shortTitle = title.length > 50 ? title.substring(0, 50) + '...' : title;
-                  return `• ${shortTitle}`;
-                }).join(' ');
-                
-                failedSection = `\\n❌ Failed/Flaky Tests: ${failedSummary}`;
-                
-                if (failedTests.length > 8) {
-                  failedSection += ` • ... and ${failedTests.length - 8} more failed tests`;
-                }
-              }
-              
-              let reportSection = '';
-              if (this.options.reportUrl) {
-                // Ensure the URL ends with a trailing slash and index.html to avoid potential 404 errors
-                let reportUrl = this.options.reportUrl;
-                if (!reportUrl.endsWith('/')) {
-                  reportUrl += '/';
-                }
-                reportSection = `\\n📑 [View Full Report](${reportUrl})`;
-              }
-              
-              const message = `${emoji}\\n ${status}\\n📊 Summary: • Total: ${summary.total} tests • Passed: ${summary.passed} • Failed: ${summary.failed} • Flaky: ${summary.flaky} • Skipped: ${summary.skipped} • Duration: ${this.formatDuration(summary.duration)}\\n📋 Test Details: ${testSummary}${failedSection}${reportSection} 🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n👤 Sent by: ${this.options.sender} | 🕐 Time: ${this.getCurrentTime()}`;
-              
-              return { text: message };
-            }
-            
-            async sendToTeams(message) {
-              return new Promise((resolve, reject) => {
-                const url = new URL(this.webhookUrl);
-                const postData = JSON.stringify(message);
-                
-                const options = {
-                  hostname: url.hostname,
-                  port: url.port || 443,
-                  path: url.pathname + url.search,
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Content-Length': Buffer.byteLength(postData)
-                  }
-                };
-                
-                const req = https.request(options, (res) => {
-                  let data = '';
-                  res.on('data', chunk => data += chunk);
-                  res.on('end', () => {
-                    if (res.statusCode >= 200 && res.statusCode < 300) {
-                      console.log('✅ Teams notification sent successfully');
-                      resolve({ success: true, status: res.statusCode, data });
-                    } else {
-                      reject(new Error(`Teams API returned status ${res.statusCode}: ${data}`));
-                    }
-                  });
-                });
-                
-                req.on('error', (error) => {
-                  reject(new Error(`Failed to send Teams notification: ${error.message}`));
-                });
-                
-                req.write(postData);
-                req.end();
-              });
-            }
-            
-            async processAndNotify(resultsFilePath) {
-              try {
-                console.log(`📊 Parsing test results from: ${resultsFilePath}`);
-                const results = this.parseResults(resultsFilePath);
-                
-                console.log(`📈 Summary: ${results.summary.total} total, ${results.summary.passed} passed, ${results.summary.failed} failed, ${results.summary.flaky} flaky`);
-                
-                const message = this.generateMessage(results);
-                
-                console.log('📤 Sending Teams notification...');
-                await this.sendToTeams(message);
-                
-                return results;
-              } catch (error) {
-                console.error('❌ Error processing results:', error.message);
-                
-                const errorMessage = {
-                  text: `❌\\n Tests Failed\\n� Summary: • Total: 0 tests • Failed: 1 • Duration: Unknown\\n📋 Test Details: • @smoke TC01: Error Processing Test Results\\n❌ Failed/Flaky Tests: • Error processing test results: ${error.message}\\n🔗 [View Workflow](https://github.com/${this.options.repositoryOwner}/${this.options.repositoryName}/actions/runs/${this.options.runId})\\n👤 Sent by: ${this.options.sender} | 🕐 Time: ${this.getCurrentTime()}`
-                };
-                
-                try {
-                  await this.sendToTeams(errorMessage);
-                } catch (sendError) {
-                  console.error('❌ Failed to send error notification:', sendError.message);
-                }
-                
-                throw error;
-              }
-            }
-          }
-          
-          // Main execution
-          async function main() {
-            const webhookUrl = process.env.TEAMS_WEBHOOK_URL;
-            const resultsFile = process.env.RESULTS_FILE;
-            const reportUrl = process.env.REPORT_URL;
-            
-            if (!webhookUrl) {
-              console.error('❌ Teams webhook URL is required');
-              process.exit(1);
-            }
-            
-            const notifier = new TeamsNotifier(webhookUrl, {
-              // Use the exact repository name from environment variable
-              repositoryName: process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : 'DE_portal-Automation',
-              repositoryOwner: process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[0] : 'ng-navaneetha',
-              runId: process.env.GITHUB_RUN_ID,
-              reportUrl: reportUrl,
-              sender: process.env.GITHUB_ACTOR || 'ng-navaneetha'
-            });
-            
-            try {
-              await notifier.processAndNotify(resultsFile);
-              console.log('✅ Notification process completed successfully');
-              process.exit(0);
-            } catch (error) {
-              console.error('❌ Notification process failed:', error.message);
-              process.exit(1);
-            }
-          }
-          
-          main();
-          EOF
-        env:
-          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-          RESULTS_FILE: $RESULTS_FILE
-          REPORT_URL: $REPORT_URL
-          GITHUB_RUN_ID: ${{ github.run_id }}
+          echo "✅ Results file found. First 30 lines:"
+          head -30 "$RESULTS_FILE"
+          echo "--- End debug info ---"
 
-
+          # Check if we have valid test data, but don't exit if tests failed
+          TOTAL_FROM_STATS=$(jq -r '.stats.expected + .stats.unexpected + .stats.flaky // 0' $RESULTS_FILE 2>/dev/null || echo "0")
+          
+          if [ "$TOTAL_FROM_STATS" -eq 0 ]; then
+            echo "Warning: Stats section may be empty or invalid, checking for actual results"
+            # Try the robust method to count actual test results
+            ACTUAL_TESTS=$(jq '[.. | objects | select(.status? != null)] | length' $RESULTS_FILE 2>/dev/null || echo "0")
             
+            if [ "$ACTUAL_TESTS" -eq 0 ]; then
+              echo "Warning: No actual test results found, but will continue with report generation"
+              # We'll continue processing with default values from our fallback results file
+              # This avoids exiting and ensures we still get a Teams notification
+            fi
+          fi
+
+          # Use stats-based parsing to match HTML report exactly
+          TOTAL_TESTS=$(jq -r '.stats.expected + .stats.unexpected + .stats.flaky + .stats.skipped' $RESULTS_FILE)
+          PASSED_TESTS=$(jq -r '.stats.expected // 0' $RESULTS_FILE)
+          FAILED_TESTS=$(jq -r '.stats.unexpected // 0' $RESULTS_FILE)
+          FLAKY_TESTS=$(jq -r '.stats.flaky // 0' $RESULTS_FILE)
+          SKIPPED_TESTS=$(jq -r '.stats.skipped // 0' $RESULTS_FILE)
+          DURATION=$(jq -r '.stats.duration // 0' $RESULTS_FILE)
+          
+          # Convert duration to seconds and minutes using jq for better reliability  
+          DURATION_SEC=$(jq -r "(.stats.duration // 0) / 1000 * 10 | floor / 10" $RESULTS_FILE)
+          DURATION_MIN=$(jq -r "(.stats.duration // 0) / 60000 * 10 | floor / 10" $RESULTS_FILE)
+
+          # Determine status and emoji
+          if [ "$FAILED_TESTS" -eq 0 ] && [ "$FLAKY_TESTS" -eq 0 ]; then
+            STATUS="✅ All Tests Passed"
+            EMOJI="🎉"
+          elif [ "$FAILED_TESTS" -gt 0 ]; then
+            STATUS="❌ Tests Failed ($FAILED_TESTS/$TOTAL_TESTS)"
+            EMOJI="🚨"
+          else
+            STATUS="⚠️ Flaky Tests Detected"
+            EMOJI="⚠️"
+          fi
+
+          # Get test summary with status - using correct spec-based approach
+          summary=$(jq -r '
+            .suites[].suites[]?.specs[] // empty | 
+            select(.title) |
+            if .ok == true and (.tests[].results | map(.status) | all(. == "passed")) then
+              "• " + .title + " → ✅ passed"
+            elif .ok == false or (.tests[].results | map(.status) | any(. == "failed")) then
+              "• " + .title + " → ❌ failed"  
+            elif .ok == true and (.tests[].results | map(.status) | any(. == "flaky")) then
+              "• " + .title + " → ⚠️ flaky"
+            else
+              "• " + .title + " → ❓ unknown"
+            end
+          ' $RESULTS_FILE 2>/dev/null | head -15)
+          
+          # Fallback to simple spec listing if complex status parsing fails
+          if [ -z "$summary" ]; then
+            echo "Complex status parsing failed, falling back to simple spec listing"
+            summary=$(jq -r '
+              .suites[].suites[]?.specs[] // empty | 
+              select(.title) |
+              "• " + .title
+            ' $RESULTS_FILE 2>/dev/null | head -15)
+          fi
+          
+          # If we still have no summary, create a basic one
+          if [ -z "$summary" ]; then
+            echo "All spec parsing failed, using fallback summary"
+            summary="• Tests executed - see full report for details"
+          fi
+          
+          # Convert to proper Teams format with line breaks for list items
+          summary=$(echo "$summary" | sed ':a;N;$!ba;s/\n/\\n/g')
+
+          # Get failed test details if any - using spec-based approach with error messages
+          failed_details=""
+          if [ "$FAILED_TESTS" -gt 0 ] || [ "$FLAKY_TESTS" -gt 0 ]; then
+            # Get failed/flaky tests with more detailed error messages
+            failed_details=$(jq -r '
+              .suites[].suites[]?.specs[] // empty | 
+              select(.title) |
+              select(.ok == false or 
+                     (.tests[].results | map(.status) | any(. == "failed" or . == "flaky"))) |
+              if (.tests[].results | map(.status) | any(. == "failed")) then
+                "• " + .title + " (failed)" + 
+                (if (.tests[].results[].errors[0].message | length > 0) then
+                  "\\n  Error: " + (.tests[].results[].errors[0].message | tostring | .[0:150] + if (length > 150) then "..." else "" end)
+                else "" end)
+              elif (.tests[].results | map(.status) | any(. == "flaky")) then
+                "• " + .title + " (flaky)" +
+                (if (.tests[].results[].errors[0].message | length > 0) then 
+                  "\\n  Info: " + (.tests[].results[].errors[0].message | tostring | .[0:150] + if (length > 150) then "..." else "" end)
+                else "" end)
+              else
+                "• " + .title + " (unknown issue)"
+              end
+            ' $RESULTS_FILE 2>/dev/null | head -10)
+            
+            # Convert to single line and add header if we have details
+            if [ ! -z "$failed_details" ]; then
+              failed_details=$(echo "$failed_details" | sed ':a;N;$!ba;s/\n/\\n/g')
+              failed_details="\\n\\n**❌ Failed/Flaky Tests:**\\n$failed_details"
+            fi
+          fi
+
+          latest_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/$REPORT_TS/"
+
+          # Get current time for reporting
+          CURRENT_DATE=$(date +'%Y-%m-%d %H:%M:%S UTC')
+          
+          # Get workflow trigger information
+          if [ "${{ github.event_name }}" == "push" ]; then
+            TRIGGER_INFO="Push to ${{ github.ref_name }} by ${{ github.actor }}"
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            TRIGGER_INFO="Pull Request by ${{ github.actor }}"
+          elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            TRIGGER_INFO="Manual trigger by ${{ github.actor }}"
+          else
+            TRIGGER_INFO="${{ github.event_name }} event"
+          fi
+          
+          # Send comprehensive Teams message
+          curl -H 'Content-Type: application/json' \
+            -d "{
+              \"text\": \"$EMOJI **Ngen Studio Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Skipped: $SKIPPED_TESTS\\n• Duration: ${DURATION_SEC}s (${DURATION_MIN}m)\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n🕒 **Run:** $CURRENT_DATE\\n👤 **Trigger:** $TRIGGER_INFO\"
+            }" \
+            ${{ secrets.TEAMS_WEBHOOK_URL }}
