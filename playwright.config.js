@@ -21,18 +21,9 @@ export default defineConfig({
 
   /* Reporter to use. */
   reporter: [
-    ['html'],
-    ['json', { outputFile: 'test-results/results.json' }],
-    ['junit', { outputFile: 'test-results/results.xml' }],
-    // ReportPortal reporter disabled until properly configured
-    // To enable ReportPortal, set these environment variables:
-    // RP_API_KEY, RP_ENDPOINT, RP_PROJECT
-    // ['@reportportal/agent-js-playwright', { 
-    //   apiKey: process.env.RP_API_KEY,
-    //   endpoint: process.env.RP_ENDPOINT,
-    //   project: process.env.RP_PROJECT,
-    //   launch: 'Playwright Test Run'
-    // }]
+    ['list'], // shows readable output in Actions logs
+    ['html', { outputFolder: 'playwright-report', open: 'never' }],
+    ['json', { outputFile: 'results.json' }]
   ],
 
   /* Test coverage and reporting */
