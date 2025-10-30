@@ -5,8 +5,18 @@ import path from 'path';
 import fs from 'fs';
 
 // Load environment variables
-const envFile = process.env.ENV_FILE || '.env.test';
+const envFile = process.env.ENV_FILE || '.env';
 dotenv.config({ path: path.resolve(envFile) });
+
+// Validate essential environment variables are loaded
+const requiredEnvVars = ['BASE_URL', 'VALID_EMAIL', 'VALID_PASSWORD'];
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    console.warn(`⚠️ Warning: Required environment variable ${envVar} is not set`);
+  } else {
+    console.log(`✅ ${envVar} loaded: ${envVar === 'VALID_PASSWORD' ? '***' : process.env[envVar]}`);
+  }
+}
 
 const AUTH_FILE = 'fixtures/auth.json';
 

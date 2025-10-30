@@ -1,0 +1,21 @@
+Test Case ID,Test Description,Expected Result,Actual Result,Status
+TC_DC_001,Login with valid credentials (abcd@ngenux.com admin@123),User successfully logs in and redirects to dashboard,To be tested,Not Executed
+TC_DC_002,Navigate to Data Catalog page,Data Catalog page loads with iframe titled 'DBT',To be tested,Not Executed
+TC_DC_003,Login to DBT iframe with admin credentials,DBT iframe login successful with admin@open-metadata.org/admin,To be tested,Not Executed
+TC_DC_004,Close What's New alert,What's New alert closes successfully using close-whats-new-alert testId,To be tested,Not Executed
+TC_DC_005,Navigate to Lineage tab,Lineage tab opens using app-bar-item-lineage testId,To be tested,Not Executed
+TC_DC_006,Click dropdown rc_select_1,Dropdown opens and shows available options,To be tested,Not Executed
+TC_DC_007,Select node-suggestion-ometa_api_service.tables,Option is selected and graph updates accordingly,To be tested,Not Executed
+TC_DC_008,Click on react-flow__pane area,Graph area gets focus and becomes interactive,To be tested,Not Executed
+TC_DC_009,Click node rf__node-3d68b9e2-a07b-467b-a7fa-c6745296f34a,Node is selected and details panel appears,To be tested,Not Executed
+TC_DC_010,Verify Domain-label appears,Domain-label UI element is visible in details panel,To be tested,Not Executed
+TC_DC_011,Verify Endpoint URL-label appears,Endpoint URL-label UI element is visible,To be tested,Not Executed
+TC_DC_012,Verify Service field is visible,Service field displays correctly in the interface,To be tested,Not Executed
+TC_DC_013,Handle popup for swagger documentation,Popup opens correctly for docs.open-metadata.org/swagger.html,To be tested,Not Executed
+TC_DC_014,Click entity-link,Entity details page loads with proper navigation,To be tested,Not Executed
+TC_DC_015,Verify Endpoints3 is visible,Endpoints3 element appears in entity details,To be tested,Not Executed
+TC_DC_016,Verify Activity Feeds & Tasks0 is visible,Activity Feeds & Tasks0 element is displayed,To be tested,Not Executed
+TC_DC_017,Click Custom Properties section,Custom Properties section expands and shows details,To be tested,Not Executed
+TC_DC_018,Verify Endpoints3 remains accessible,Endpoints3 element stays accessible after Custom Properties interaction,To be tested,Not Executed
+TC_DC_019,Negative - Invalid DBT login credentials,Error message displayed for invalid login attempt,To be tested,Not Executed
+TC_DC_020,End-to-End Data Catalog workflow,Complete user journey from login to lineage exploration successful,To be tested,Not Executed

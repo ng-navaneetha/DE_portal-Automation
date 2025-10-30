@@ -1,14 +1,18 @@
+// Debug: Check if environment variables are available
+console.log('DEBUG testData.js: process.env.BASE_URL =', process.env.BASE_URL);
+
 export const TEST_CONSTANTS = {
-  BASE_URL: process.env.BASE_URL || 'https://de-hub.ngenux.app',
+  get BASE_URL() { return process.env.BASE_URL; },
+  
   
   CREDENTIALS: {
     VALID: {
-      email: process.env.VALID_EMAIL || 'abcd@ngenux.com',
-      password: process.env.VALID_PASSWORD || 'Admin@123'
+      get email() { return process.env.VALID_EMAIL; },
+      get password() { return process.env.VALID_PASSWORD; }
     },
     INVALID: {
-      email: process.env.INVALID_EMAIL || 'wrong@ngenux.com',
-      password: process.env.INVALID_PASSWORD || 'WrongPass'
+      get email() { return process.env.INVALID_EMAIL; },
+      get password() { return process.env.INVALID_PASSWORD; }
     }
   },
 
@@ -53,9 +57,9 @@ export const TEST_CONSTANTS = {
 
   TABLEAU: {
     VALID: {
-      serverUrl: process.env.TABLEAU_SERVER_URL || 'https://prod-useast-b.online.tableau.com',
-      siteId: process.env.TABLEAU_SITE_ID || 'b360bi',
-      dashboardName: process.env.TABLEAU_DASHBOARD_NAME || 'Superstore test'
+      serverUrl: process.env.TABLEAU_SERVER_URL ,
+      siteId: process.env.TABLEAU_SITE_ID ,
+      dashboardName: process.env.TABLEAU_DASHBOARD_NAME 
     },
     INVALID: {
       serverUrl: process.env.INVALID_TABLEAU_SERVER_URL || 'invalid-url',
@@ -63,9 +67,9 @@ export const TEST_CONSTANTS = {
       dashboardName: process.env.INVALID_TABLEAU_DASHBOARD_NAME || 'UnsupportedDashboard'
     },
     LARGE: {
-      serverUrl: process.env.TABLEAU_SERVER_URL || 'https://prod-useast-b.online.tableau.com',
-      siteId: process.env.TABLEAU_SITE_ID || 'b360bi',
-      dashboardName: process.env.LARGE_TABLEAU_DASHBOARD_NAME || 'Amerisave Dash'
+      serverUrl: process.env.TABLEAU_SERVER_URL,
+      siteId: process.env.TABLEAU_SITE_ID ,
+      dashboardName: process.env.LARGE_TABLEAU_DASHBOARD_NAME 
     }
   },
 

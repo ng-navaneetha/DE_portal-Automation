@@ -1,6 +1,13 @@
-import { TEST_CONSTANTS } from '../constants/testData.js';
-import fs from 'fs';
+import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
+
+// Load environment variables first
+const envFile = process.env.ENV_FILE || '.env';
+dotenv.config({ path: path.resolve(envFile) });
+
+// Now import TEST_CONSTANTS after env vars are loaded
+import { TEST_CONSTANTS } from '../constants/testData.js';
 
 const AUTH_FILE = 'fixtures/auth.json';
 
@@ -65,6 +72,8 @@ export async function ensureAuthenticated(page) {
     console.log('Login completed successfully');
   } else {
     // Navigate to login page if we're somewhere else
+    console.log('DEBUG: TEST_CONSTANTS.BASE_URL =', TEST_CONSTANTS.BASE_URL);
+    console.log('DEBUG: process.env.BASE_URL =', process.env.BASE_URL);
     await page.goto(`${TEST_CONSTANTS.BASE_URL}/login`);
     await page.getByRole('textbox', { name: 'Email Address' }).fill(TEST_CONSTANTS.CREDENTIALS.VALID.email);
     await page.getByRole('textbox', { name: 'Password' }).fill(TEST_CONSTANTS.CREDENTIALS.VALID.password);

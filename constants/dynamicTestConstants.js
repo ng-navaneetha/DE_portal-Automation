@@ -219,7 +219,9 @@ export const DYNAMIC_TEST_CONSTANTS = {
   CODE_CONTEXT: CODE_CONTEXT_CONFIG,
   SCENARIOS: TEST_SCENARIOS,
   BROWSER: BROWSER_CONFIG,
-  HELPERS: DYNAMIC_HELPERS
+  HELPERS: DYNAMIC_HELPERS,
+  LINEAGE_OPTION: 'node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621',
+  LINEAGE_SELECTED_VIEW: 'rf__node-5ac82eb0-a2c7-4318-930a-9810470362c9'
 };
 
 // Legacy compatibility - export individual components
