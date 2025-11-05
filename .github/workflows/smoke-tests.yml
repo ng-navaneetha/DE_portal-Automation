@@ -102,7 +102,7 @@ jobs:
           
           # Run tests with explicit result generation
           TEST_EXIT_CODE=0
-          npx playwright test --grep @smoke --reporter=html,json,junit || TEST_EXIT_CODE=$?
+          npx playwright test --grep @smoke || TEST_EXIT_CODE=$?
           
           echo "Tests completed with exit code: $TEST_EXIT_CODE"
 
