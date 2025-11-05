@@ -1,0 +1,24 @@
+{
+  "config": {
+    "rootDir": "/home/runner/work/DE_portal-Automation/DE_portal-Automation",
+    "configFile": "/home/runner/work/DE_portal-Automation/DE_portal-Automation/playwright.config.js"
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Test execution failed before results could be generated",
+      "location": {
+        "file": "GitHub Workflow",
+        "line": 1
+      }
+    }
+  ],
+  "stats": {
+    "startTime": "2025-11-05T07:57:53.000Z",
+    "duration": 0,
+    "expected": 0,
+    "unexpected": 1,
+    "flaky": 0,
+    "skipped": 0
+  }
+}
