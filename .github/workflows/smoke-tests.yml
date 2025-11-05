@@ -61,9 +61,8 @@ jobs:
 
       - name: Run Playwright smoke tests with HTML + JSON report
         id: tests
-        continue-on-error: true # Continue workflow even if tests fail
+        continue-on-error: true 
         env:
-          # Application URLs and Basic Config
           BASE_URL: ${{ secrets.BASE_URL }}
           NODE_ENV: ${{ secrets.NODE_ENV || 'test' }}
           TEST_ENV: ${{ secrets.TEST_ENV || 'dev' }}
@@ -98,27 +97,71 @@ jobs:
           DEBUG: ${{ secrets.DEBUG || 'false' }}
           CI: "true"
         run: |
+          echo "🚀 Starting Playwright test execution..."
           mkdir -p reports
-          npx playwright test --grep @smoke
-          ts=$(date +'%Y-%m-%d_%H-%M-%S')
+          
+          # Run tests with explicit result generation
+          TEST_EXIT_CODE=0
+          npx playwright test --grep @smoke --reporter=html,json,junit || TEST_EXIT_CODE=$?
+          
+          echo "Tests completed with exit code: $TEST_EXIT_CODE"
 
-          # Move reports and handle missing files gracefully
+          ts=$(date +'%Y-%m-%d_%H-%M-%S')
+          mkdir -p "reports/$ts"
+
+          # Always move/create HTML report
           if [ -d "playwright-report" ]; then
+            echo "✅ HTML report found, moving to reports/$ts"
             mv playwright-report "reports/$ts"
           else
+            echo "⚠️ No HTML report generated, creating placeholder"
             mkdir -p "reports/$ts"
-            echo "No HTML report generated" > "reports/$ts/index.html"
+            echo "<html><body><h1>Test Execution Failed</h1><p>No HTML report was generated. Check logs for details.</p></body></html>" > "reports/$ts/index.html"
           fi
 
+          # Always move/create JSON results
           if [ -f "results.json" ]; then
+            echo "✅ JSON results found, moving to reports/$ts"
             mv results.json "reports/$ts/results.json"
           else
-            echo "No results.json file found - tests may have failed during execution"
-            # Create a minimal results file for failed execution
-            echo '{"stats":{"expected":0,"unexpected":1,"flaky":0,"skipped":0,"duration":0},"suites":[]}' > "reports/$ts/results.json"
+            echo "⚠️ No results.json found, creating fallback results"
+            # Create a proper failure result structure
+            cat > "reports/$ts/results.json" << EOF
+          {
+            "config": {
+              "rootDir": "$PWD",
+              "configFile": "$PWD/playwright.config.js"
+            },
+            "suites": [],
+            "errors": [
+              {
+                "message": "Test execution failed before results could be generated",
+                "location": {
+                  "file": "GitHub Workflow",
+                  "line": 1
+                }
+              }
+            ],
+            "stats": {
+              "startTime": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
+              "duration": 0,
+              "expected": 0,
+              "unexpected": 1,
+              "flaky": 0,
+              "skipped": 0
+            }
+          }
+          EOF
+          fi
+
+          # Also create JUnit XML if it exists
+          if [ -f "test-results.xml" ]; then
+            echo "✅ JUnit XML found, moving to reports/$ts"
+            mv test-results.xml "reports/$ts/test-results.xml"
           fi
 
           echo "REPORT_TS=$ts" >> $GITHUB_ENV
+          echo "TEST_EXIT_CODE=$TEST_EXIT_CODE" >> $GITHUB_ENV
 
       - name: Deploy Playwright reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

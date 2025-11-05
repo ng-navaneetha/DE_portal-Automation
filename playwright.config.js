@@ -21,11 +21,21 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
+  /* Global timeout */
+  globalTimeout: process.env.CI ? 60 * 60 * 1000 : undefined, // 1 hour on CI
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html'],
-    ['json', { outputFile: 'results.json' }],
-    
+    ['html', { 
+      open: 'never',
+      outputFolder: 'playwright-report'
+    }],
+    ['json', { 
+      outputFile: './results.json'  // Explicitly in root directory
+    }],
+    ['junit', { 
+      outputFile: './test-results.xml'  // Also in root directory
+    }],
+    process.env.CI ? ['github'] : ['list']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
