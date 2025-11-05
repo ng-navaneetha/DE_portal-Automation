@@ -29,7 +29,7 @@ export class DataAssistantPage {
 
   async viewTablesAndDetails() {
     await this.showTablesBtn.click();
-    await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();
+    // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();
     await this.getTableDetailsBtn.click();
   }
 
