@@ -163,14 +163,61 @@ jobs:
           echo "REPORT_TS=$ts" >> $GITHUB_ENV
           echo "TEST_EXIT_CODE=$TEST_EXIT_CODE" >> $GITHUB_ENV
 
+          # Create root index.html for GitHub Pages
+          cat > "reports/index.html" << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>DE Portal Test Reports</title>
+              <style>
+                  body { font-family: Arial, sans-serif; margin: 40px; }
+                  h1 { color: #333; }
+                  .report-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+                  .report-item a { text-decoration: none; color: #0066cc; font-weight: bold; }
+                  .report-item .date { color: #666; font-size: 0.9em; }
+                  .latest { background-color: #f0f8ff; border-color: #0066cc; }
+              </style>
+          </head>
+          <body>
+              <h1>🧪 DE Portal Playwright Test Reports</h1>
+              <p>Select a test run to view the detailed report:</p>
+              <div id="reports"></div>
+              <script>
+                  // Get all report directories and create links
+                  const reportsContainer = document.getElementById('reports');
+                  
+                  // Add the latest report (current run)
+                  const latestTs = new URLSearchParams(window.location.search).get('latest') || '$ts';
+                  const latestDiv = document.createElement('div');
+                  latestDiv.className = 'report-item latest';
+                  latestDiv.innerHTML = `
+                      <a href="./${latestTs}/index.html">📊 Latest Test Run (${latestTs})</a>
+                      <div class="date">Most recent execution</div>
+                  `;
+                  reportsContainer.appendChild(latestDiv);
+                  
+                  // Auto-redirect to latest report if no specific report requested
+                  if (!window.location.search) {
+                      setTimeout(() => {
+                          window.location.href = `./${latestTs}/index.html`;
+                      }, 2000);
+                  }
+              </script>
+              <p><em>You will be automatically redirected to the latest report in 2 seconds...</em></p>
+          </body>
+          </html>
+          EOF
+
       - name: Deploy Playwright reports to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: always() # Always deploy reports, even if tests failed
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
           publish_branch: gh-pages
           keep_files: true # keep older reports instead of deleting them
+          enable_jekyll: false # Disable Jekyll processing
+          force_orphan: false # Don't overwrite existing history
 
       - name: Parse results and send summary to Teams
         if: always() # Always send Teams notification, regardless of test outcome
@@ -298,6 +345,7 @@ jobs:
           fi
 
           latest_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/$REPORT_TS/"
+          main_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
 
 
           # Send comprehensive Teams message
@@ -308,6 +356,6 @@ jobs:
 
           curl -H 'Content-Type: application/json' \
             -d "{
-              \"text\": \"$EMOJI **DE_Portal Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Skipped: $SKIPPED_TESTS\\n• Duration: ${DURATION_SEC}s (${DURATION_MIN}m)\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n---\\n👤 **Sent by:** Navaneetha B | 🕐 **Time:** $(TZ='Asia/Kolkata' date +'%a %b %d %Y, %I:%M:%S %p IST')\"
+              \"text\": \"$EMOJI **DE_Portal Test Results**\\n\\n**$STATUS**\\n\\n📊 **Summary:**\\n• Total: $TOTAL_TESTS tests\\n• Passed: $PASSED_TESTS\\n• Failed: $FAILED_TESTS\\n• Flaky: $FLAKY_TESTS\\n• Skipped: $SKIPPED_TESTS\\n• Duration: ${DURATION_SEC}s (${DURATION_MIN}m)\\n\\n📋 **Test Details:**\\n$summary$failed_details\\n\\n📑 [View Full Report]($latest_url)\\n🏠 [All Reports]($main_url)\\n🔗 [View Workflow](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\\n\\n---\\n👤 **Sent by:** Navaneetha B | 🕐 **Time:** $(TZ='Asia/Kolkata' date +'%a %b %d %Y, %I:%M:%S %p IST')\"
             }" \
             "${{ secrets.TEAMS_WEBHOOK_URL }}"
