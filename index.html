@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DE Portal Test Reports</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #333; }
+        .report-item { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .report-item a { text-decoration: none; color: #0066cc; font-weight: bold; }
+        .report-item .date { color: #666; font-size: 0.9em; }
+        .latest { background-color: #f0f8ff; border-color: #0066cc; }
+    </style>
+</head>
+<body>
+    <h1>🧪 DE Portal Playwright Test Reports</h1>
+    <p>Select a test run to view the detailed report:</p>
+    <div id="reports"></div>
+    <script>
+        // Get all report directories and create links
+        const reportsContainer = document.getElementById('reports');
+        
+        // Add the latest report (current run)
+        const latestTs = new URLSearchParams(window.location.search).get('latest') || '$ts';
+        const latestDiv = document.createElement('div');
+        latestDiv.className = 'report-item latest';
+        latestDiv.innerHTML = `
+            <a href="./${latestTs}/index.html">📊 Latest Test Run (${latestTs})</a>
+            <div class="date">Most recent execution</div>
+        `;
+        reportsContainer.appendChild(latestDiv);
+        
+        // Auto-redirect to latest report if no specific report requested
+        if (!window.location.search) {
+            setTimeout(() => {
+                window.location.href = `./${latestTs}/index.html`;
+            }, 2000);
+        }
+    </script>
+    <p><em>You will be automatically redirected to the latest report in 2 seconds...</em></p>
+</body>
+</html>
