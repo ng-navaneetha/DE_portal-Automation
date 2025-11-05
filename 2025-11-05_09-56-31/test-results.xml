@@ -1,0 +1,157 @@
+<testsuites id="" name="" tests="5" failures="1" skipped="0" errors="0" time="76.77338100000001">
+<testsuite name="data-catalog.spec.js" timestamp="2025-11-05T09:55:15.313Z" hostname="chromium" tests="3" failures="0" skipped="0" time="37.495" errors="0">
+<testcase name="Data Catalog - Complete DBT Flow › Basic Authentication and Navigation › TC_DC_001 @smoke Login - should authenticate with valid credentials" classname="data-catalog.spec.js" time="5.937">
+<system-out>
+<![CDATA[Creating new auth session...
+Auth session saved successfully
+Already authenticated, proceeding with tests...
+]]>
+</system-out>
+</testcase>
+<testcase name="Data Catalog - Complete DBT Flow › Advanced Features › TC_DC_014 @smoke Complete Advanced Features - should verify all tabs and functionalities" classname="data-catalog.spec.js" time="17.095">
+<system-out>
+<![CDATA[Already authenticated, proceeding with tests...
+Trying to click input element directly...
+Successfully clicked input element
+]]>
+</system-out>
+</testcase>
+<testcase name="Data Catalog - Complete DBT Flow › TC_DC_020 @smoke End-to-End Workflow - should complete full data catalog journey" classname="data-catalog.spec.js" time="14.463">
+<system-out>
+<![CDATA[Already authenticated, proceeding with tests...
+Trying to click input element directly...
+Successfully clicked input element
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="dataAssistant.spec.js" timestamp="2025-11-05T09:55:15.313Z" hostname="chromium" tests="1" failures="1" skipped="0" time="22.891" errors="0">
+<testcase name="@smoke Data Assistant Flow › Complete Data Assistant workflow - Catalog, Tables, Procedures, and Lineage" classname="dataAssistant.spec.js" time="22.891">
+<failure message="dataAssistant.spec.js:6:7 Complete Data Assistant workflow - Catalog, Tables, Procedures, and Lineage" type="FAILURE">
+<![CDATA[  [chromium] › dataAssistant.spec.js:6:7 › @smoke Data Assistant Flow › Complete Data Assistant workflow - Catalog, Tables, Procedures, and Lineage › View Tables and Get Details 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Here are some tables from your data catalog:')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Here are some tables from your data catalog:')
+
+
+       at ../page-objects/DataAssistantPage.js:32
+
+      30 |   async viewTablesAndDetails() {
+      31 |     await this.showTablesBtn.click();
+    > 32 |     await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();
+         |                                                                                       ^
+      33 |     await this.getTableDetailsBtn.click();
+      34 |   }
+      35 |
+        at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal-Automation/DE_portal-Automation/page-objects/DataAssistantPage.js:32:87)
+        at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/dataAssistant.spec.js:20:7
+        at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/dataAssistant.spec.js:19:5
+
+    Error Context: ../test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/error-context.md
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Here are some tables from your data catalog:')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Here are some tables from your data catalog:')
+
+
+       at ../page-objects/DataAssistantPage.js:32
+
+      30 |   async viewTablesAndDetails() {
+      31 |     await this.showTablesBtn.click();
+    > 32 |     await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();
+         |                                                                                       ^
+      33 |     await this.getTableDetailsBtn.click();
+      34 |   }
+      35 |
+        at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal-Automation/DE_portal-Automation/page-objects/DataAssistantPage.js:32:87)
+        at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/dataAssistant.spec.js:20:7
+        at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/dataAssistant.spec.js:19:5
+
+    Error Context: ../test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace ../test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #2 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('Here are some tables from your data catalog:')
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText('Here are some tables from your data catalog:')
+
+
+       at ../page-objects/DataAssistantPage.js:32
+
+      30 |   async viewTablesAndDetails() {
+      31 |     await this.showTablesBtn.click();
+    > 32 |     await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();
+         |                                                                                       ^
+      33 |     await this.getTableDetailsBtn.click();
+      34 |   }
+      35 |
+        at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal-Automation/DE_portal-Automation/page-objects/DataAssistantPage.js:32:87)
+        at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/dataAssistant.spec.js:20:7
+        at /home/runner/work/DE_portal-Automation/DE_portal-Automation/tests/dataAssistant.spec.js:19:5
+
+    Error Context: ../test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[Already authenticated, proceeding with tests...
+
+[[ATTACHMENT|test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/error-context.md]]
+Using existing auth session...
+Already authenticated, proceeding with tests...
+
+[[ATTACHMENT|test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/error-context.md]]
+
+[[ATTACHMENT|test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/trace.zip]]
+Using existing auth session...
+Already authenticated, proceeding with tests...
+
+[[ATTACHMENT|test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="tableau-to-powerbi.spec.js" timestamp="2025-11-05T09:55:15.313Z" hostname="chromium" tests="1" failures="0" skipped="0" time="12.045" errors="0">
+<testcase name="Tableau to Power BI Conversion › @smoke Happy Path - Convert Tableau dashboard and download PDF" classname="tableau-to-powerbi.spec.js" time="12.045">
+<system-out>
+<![CDATA[Using existing auth session...
+Already authenticated, proceeding with tests...
+✅ Conversion completed successfully
+✅ PDF download detected: Superstore test_20251105_095629_report.pdf
+✅ PDF downloaded successfully: Superstore test_20251105_095629_report.pdf
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
