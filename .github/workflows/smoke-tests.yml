@@ -216,8 +216,6 @@ jobs:
           publish_dir: ./reports
           publish_branch: gh-pages
           keep_files: true # keep older reports instead of deleting them
-          enable_jekyll: false # Disable Jekyll processing
-          force_orphan: false # Don't overwrite existing history
 
       - name: Parse results and send summary to Teams
         if: always() # Always send Teams notification, regardless of test outcome
@@ -345,7 +343,6 @@ jobs:
           fi
 
           latest_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/$REPORT_TS/"
-          main_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
 
 
           # Send comprehensive Teams message
