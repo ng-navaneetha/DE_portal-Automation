@@ -111,11 +111,12 @@ jobs:
 
           # Always move/create HTML report
           if [ -d "playwright-report" ]; then
-            echo "✅ HTML report found, moving to reports/$ts"
-            mv playwright-report "reports/$ts"
+            echo "✅ HTML report found, moving contents to reports/$ts"
+            # Move contents of playwright-report to reports/$ts (not the folder itself)
+            cp -r playwright-report/* "reports/$ts/"
+            rm -rf playwright-report
           else
             echo "⚠️ No HTML report generated, creating placeholder"
-            mkdir -p "reports/$ts"
             echo "<html><body><h1>Test Execution Failed</h1><p>No HTML report was generated. Check logs for details.</p></body></html>" > "reports/$ts/index.html"
           fi
 
@@ -343,6 +344,7 @@ jobs:
           fi
 
           latest_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/$REPORT_TS/"
+          main_url="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
 
 
           # Send comprehensive Teams message
