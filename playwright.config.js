@@ -25,16 +25,11 @@ export default defineConfig({
   globalTimeout: process.env.CI ? 60 * 60 * 1000 : undefined, // 1 hour on CI
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html', { 
-      open: 'never',
-      outputFolder: 'playwright-report'
-    }],
+    ['html'],
     ['json', { 
       outputFile: './results.json'  // Explicitly in root directory
     }],
-    ['junit', { 
-      outputFile: './test-results.xml'  // Also in root directory
-    }],
+   
     process.env.CI ? ['github'] : ['list']
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
