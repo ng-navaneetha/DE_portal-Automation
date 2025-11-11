@@ -1,0 +1,482 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 3600000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal_Automation/commit/09818f890831ae53c8b2b06e0c0ebf8782862e18",
+        "commitHash": "09818f890831ae53c8b2b06e0c0ebf8782862e18",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal_Automation/actions/runs/19254399456"
+      },
+      "gitCommit": {
+        "shortHash": "09818f8",
+        "hash": "09818f890831ae53c8b2b06e0c0ebf8782862e18",
+        "subject": "refactor: comment out visibility check for tables in viewTablesAndDetails method",
+        "body": "refactor: comment out visibility check for tables in viewTablesAndDetails method\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1762339481000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1762339481000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./results.json"
+        }
+      ],
+      [
+        "github",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal_Automation/commit/09818f890831ae53c8b2b06e0c0ebf8782862e18",
+            "commitHash": "09818f890831ae53c8b2b06e0c0ebf8782862e18",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal_Automation/actions/runs/19254399456"
+          },
+          "gitCommit": {
+            "shortHash": "09818f8",
+            "hash": "09818f890831ae53c8b2b06e0c0ebf8782862e18",
+            "subject": "refactor: comment out visibility check for tables in viewTablesAndDetails method",
+            "body": "refactor: comment out visibility check for tables in viewTablesAndDetails method\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1762339481000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1762339481000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "data-catalog.spec.js",
+      "file": "data-catalog.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Data Catalog - Complete DBT Flow",
+          "file": "data-catalog.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC_DC_020 @smoke End-to-End Workflow - should complete full data catalog journey",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14412,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        },
+                        {
+                          "text": "Trying to click input element directly...\n"
+                        },
+                        {
+                          "text": "Successfully clicked input element\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Execute complete workflow efficiently",
+                          "duration": 13276
+                        },
+                        {
+                          "title": "Verify workflow completion with multiple assertions",
+                          "duration": 20
+                        }
+                      ],
+                      "startTime": "2025-11-11T03:57:07.205Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b99128bf874cb2c020b6-675bbca20eab1d8980a1",
+              "file": "data-catalog.spec.js",
+              "line": 263,
+              "column": 7
+            }
+          ],
+          "suites": [
+            {
+              "title": "Basic Authentication and Navigation",
+              "file": "data-catalog.spec.js",
+              "line": 49,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "TC_DC_001 @smoke Login - should authenticate with valid credentials",
+                  "ok": true,
+                  "tags": [
+                    "smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 5332,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Creating new auth session...\n"
+                            },
+                            {
+                              "text": "Auth session saved successfully\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Verify successful login and dashboard loads",
+                              "duration": 10
+                            }
+                          ],
+                          "startTime": "2025-11-11T03:56:41.935Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "b99128bf874cb2c020b6-f78d1e5aa0169a572564",
+                  "file": "data-catalog.spec.js",
+                  "line": 50,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Advanced Features",
+              "file": "data-catalog.spec.js",
+              "line": 196,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "TC_DC_014 @smoke Complete Advanced Features - should verify all tabs and functionalities",
+                  "ok": true,
+                  "tags": [
+                    "smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 18576,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Trying to click input element directly...\n"
+                            },
+                            {
+                              "text": "Successfully clicked input element\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Setup entity details for advanced features testing",
+                              "duration": 15163
+                            },
+                            {
+                              "title": "Verify entity details page",
+                              "duration": 1873
+                            },
+                            {
+                              "title": "Verify Lineage tab functionality",
+                              "duration": 7
+                            },
+                            {
+                              "title": "Verify Activity Feeds and Tasks tab",
+                              "duration": 6
+                            },
+                            {
+                              "title": "Verify Custom Properties tab",
+                              "duration": 91
+                            },
+                            {
+                              "title": "Verify all advanced features are accessible together",
+                              "duration": 19
+                            }
+                          ],
+                          "startTime": "2025-11-11T03:56:48.610Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "b99128bf874cb2c020b6-770783d6fced3c7dcaa4",
+                  "file": "data-catalog.spec.js",
+                  "line": 197,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "dataAssistant.spec.js",
+      "file": "dataAssistant.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "@smoke Data Assistant Flow",
+          "file": "dataAssistant.spec.js",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete Data Assistant workflow - Catalog, Tables, Procedures, and Lineage",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 13002,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1137
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1116
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 6621
+                        },
+                        {
+                          "title": "Navigate Stored Procedures and Return to Main Menu",
+                          "duration": 1819
+                        },
+                        {
+                          "title": "Explore Data Lineage and Examples",
+                          "duration": 2235
+                        },
+                        {
+                          "title": "Close Data Assistant",
+                          "duration": 2
+                        }
+                      ],
+                      "startTime": "2025-11-11T03:57:21.643Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "eeb88c7cf421022f79c0-9dd2d6939c00f961c494",
+              "file": "dataAssistant.spec.js",
+              "line": 6,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tableau-to-powerbi.spec.js",
+      "file": "tableau-to-powerbi.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Tableau to Power BI Conversion",
+          "file": "tableau-to-powerbi.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@smoke Happy Path - Convert Tableau dashboard and download PDF",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 14110,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        },
+                        {
+                          "text": "✅ Conversion completed successfully\n"
+                        },
+                        {
+                          "text": "✅ PDF download detected: Superstore test_20251111_035746_report.pdf\n"
+                        },
+                        {
+                          "text": "✅ PDF downloaded successfully: Superstore test_20251111_035746_report.pdf\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-11-11T03:57:34.667Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "429b7a3e0171e67b0520-9e3f5f626f9f4ca28286",
+              "file": "tableau-to-powerbi.spec.js",
+              "line": 20,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-11-11T03:56:41.071Z",
+    "duration": 67767.494,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
