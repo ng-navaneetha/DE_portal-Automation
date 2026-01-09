@@ -21,10 +21,7 @@ export const DYNAMIC_CONFIG = {
 
   // Application URLs
   BASE_URLS: {
-    dev: 'https://de-hub.ngenux.app',
-    staging: 'https://staging-de-hub.ngenux.app',
-    prod: 'https://prod-de-hub.ngenux.app',
-    local: 'http://localhost:3000'
+    dev: process.env.BASE_URL,
   },
 
   // Timeout Configuration
@@ -39,16 +36,16 @@ export const DYNAMIC_CONFIG = {
   // User Credentials (Environment-specific)
   CREDENTIALS: {
     ADMIN: {
-      email: process.env.ADMIN_EMAIL || 'admin@ngenux.com',
-      password: process.env.ADMIN_PASSWORD || 'Admin@123'
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD
     },
     USER: {
-      email: process.env.USER_EMAIL || 'abcd@ngenux.com',
-      password: process.env.USER_PASSWORD || 'Admin@123'
+      email: process.env.USER_EMAIL,
+      password: process.env.USER_PASSWORD
     },
     READONLY: {
-      email: process.env.READONLY_EMAIL || 'readonly@ngenux.com',
-      password: process.env.READONLY_PASSWORD || 'ReadOnly@123'
+      email: process.env.READONLY_EMAIL,
+      password: process.env.READONLY_PASSWORD
     }
   }
 };
