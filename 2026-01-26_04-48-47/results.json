@@ -1,0 +1,1010 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 3600000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal_Automation/commit/e902af8e45ccdbb3b95bdd01f281e0cb1215e611",
+        "commitHash": "e902af8e45ccdbb3b95bdd01f281e0cb1215e611",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal_Automation/actions/runs/21346478173"
+      },
+      "gitCommit": {
+        "shortHash": "e902af8",
+        "hash": "e902af8e45ccdbb3b95bdd01f281e0cb1215e611",
+        "subject": "refactor: update dynamic test constants to use environment variables for URLs and credentials",
+        "body": "refactor: update dynamic test constants to use environment variables for URLs and credentials\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1767953024000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1767953024000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./results.json"
+        }
+      ],
+      [
+        "github",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal_Automation/commit/e902af8e45ccdbb3b95bdd01f281e0cb1215e611",
+            "commitHash": "e902af8e45ccdbb3b95bdd01f281e0cb1215e611",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal_Automation/actions/runs/21346478173"
+          },
+          "gitCommit": {
+            "shortHash": "e902af8",
+            "hash": "e902af8e45ccdbb3b95bdd01f281e0cb1215e611",
+            "subject": "refactor: update dynamic test constants to use environment variables for URLs and credentials",
+            "body": "refactor: update dynamic test constants to use environment variables for URLs and credentials\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1767953024000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1767953024000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "data-catalog.spec.js",
+      "file": "data-catalog.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Data Catalog - Complete DBT Flow",
+          "file": "data-catalog.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC_DC_020 @smoke End-to-End Workflow - should complete full data catalog journey",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 120000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-26T04:41:26.548Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-26T04:43:31.349Z",
+                      "annotations": [],
+                      "attachments": []
+                    },
+                    {
+                      "workerIndex": -1,
+                      "parallelIndex": -1,
+                      "status": "skipped",
+                      "duration": 0,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-26T04:45:34.184Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "b99128bf874cb2c020b6-675bbca20eab1d8980a1",
+              "file": "data-catalog.spec.js",
+              "line": 263,
+              "column": 7
+            }
+          ],
+          "suites": [
+            {
+              "title": "Basic Authentication and Navigation",
+              "file": "data-catalog.spec.js",
+              "line": 49,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "TC_DC_001 @smoke Login - should authenticate with valid credentials",
+                  "ok": true,
+                  "tags": [
+                    "smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 6739,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Creating new auth session...\n"
+                            },
+                            {
+                              "text": "Auth session saved successfully\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Verify successful login and dashboard loads",
+                              "duration": 10
+                            }
+                          ],
+                          "startTime": "2026-01-26T04:39:18.494Z",
+                          "annotations": [],
+                          "attachments": []
+                        },
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 2036,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Using existing auth session...\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 1,
+                          "steps": [
+                            {
+                              "title": "Verify successful login and dashboard loads",
+                              "duration": 18
+                            }
+                          ],
+                          "startTime": "2026-01-26T04:41:27.170Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--07761-cate-with-valid-credentials-chromium-retry1/trace.zip"
+                            }
+                          ]
+                        },
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 1965,
+                          "errors": [],
+                          "stdout": [
+                            {
+                              "text": "Using existing auth session...\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 2,
+                          "steps": [
+                            {
+                              "title": "Verify successful login and dashboard loads",
+                              "duration": 10
+                            }
+                          ],
+                          "startTime": "2026-01-26T04:43:31.972Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "b99128bf874cb2c020b6-f78d1e5aa0169a572564",
+                  "file": "data-catalog.spec.js",
+                  "line": 50,
+                  "column": 9
+                }
+              ]
+            },
+            {
+              "title": "Advanced Features",
+              "file": "data-catalog.spec.js",
+              "line": 196,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "TC_DC_014 @smoke Complete Advanced Features - should verify all tabs and functionalities",
+                  "ok": false,
+                  "tags": [
+                    "smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "timedOut",
+                          "duration": 120096,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                          },
+                          "errors": [
+                            {
+                              "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                            },
+                            {
+                              "location": {
+                                "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                "column": 18,
+                                "line": 92
+                              },
+                              "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n\n\n   at ../page-objects/dataCatalogPage.js:92\n\n  90 |     const iframe = this.getIframe();\n  91 |     const option = iframe.getByTestId(lineageOption);\n> 92 |     await option.waitFor({ state: 'visible' });\n     |                  ^\n  93 |     await option.click();\n  94 |   }\n  95 |\n    at DataCatalogPage.selectNodeSuggestion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:92:18)\n    at DataCatalogPage.setupLineageView (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:172:16)\n    at DataCatalogPage.setupEntityDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:177:5)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:199:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:198:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Trying to click input element directly...\n"
+                            },
+                            {
+                              "text": "Successfully clicked input element\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Setup entity details for advanced features testing",
+                              "duration": 118204,
+                              "error": {
+                                "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n",
+                                "stack": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n\n    at DataCatalogPage.selectNodeSuggestion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:92:18)\n    at DataCatalogPage.setupLineageView (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:172:16)\n    at DataCatalogPage.setupEntityDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:177:5)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:199:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:198:7",
+                                "location": {
+                                  "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                  "column": 18,
+                                  "line": 92
+                                },
+                                "snippet": "   at ../page-objects/dataCatalogPage.js:92\n\n\u001b[0m \u001b[90m 90 |\u001b[39m     \u001b[36mconst\u001b[39m iframe \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetIframe()\u001b[33m;\u001b[39m\n \u001b[90m 91 |\u001b[39m     \u001b[36mconst\u001b[39m option \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(lineageOption)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 92 |\u001b[39m     \u001b[36mawait\u001b[39m option\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 93 |\u001b[39m     \u001b[36mawait\u001b[39m option\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 94 |\u001b[39m   }\n \u001b[90m 95 |\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-01-26T04:39:26.398Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium/video.webm"
+                            }
+                          ]
+                        },
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "timedOut",
+                          "duration": 120906,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                          },
+                          "errors": [
+                            {
+                              "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                            },
+                            {
+                              "location": {
+                                "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                "column": 18,
+                                "line": 92
+                              },
+                              "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n\n\n   at ../page-objects/dataCatalogPage.js:92\n\n  90 |     const iframe = this.getIframe();\n  91 |     const option = iframe.getByTestId(lineageOption);\n> 92 |     await option.waitFor({ state: 'visible' });\n     |                  ^\n  93 |     await option.click();\n  94 |   }\n  95 |\n    at DataCatalogPage.selectNodeSuggestion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:92:18)\n    at DataCatalogPage.setupLineageView (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:172:16)\n    at DataCatalogPage.setupEntityDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:177:5)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:199:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:198:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Trying to click input element directly...\n"
+                            },
+                            {
+                              "text": "Successfully clicked input element\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 1,
+                          "steps": [
+                            {
+                              "title": "Setup entity details for advanced features testing",
+                              "duration": 118300,
+                              "error": {
+                                "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n",
+                                "stack": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n\n    at DataCatalogPage.selectNodeSuggestion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:92:18)\n    at DataCatalogPage.setupLineageView (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:172:16)\n    at DataCatalogPage.setupEntityDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:177:5)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:199:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:198:7",
+                                "location": {
+                                  "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                  "column": 18,
+                                  "line": 92
+                                },
+                                "snippet": "   at ../page-objects/dataCatalogPage.js:92\n\n\u001b[0m \u001b[90m 90 |\u001b[39m     \u001b[36mconst\u001b[39m iframe \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetIframe()\u001b[33m;\u001b[39m\n \u001b[90m 91 |\u001b[39m     \u001b[36mconst\u001b[39m option \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(lineageOption)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 92 |\u001b[39m     \u001b[36mawait\u001b[39m option\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 93 |\u001b[39m     \u001b[36mawait\u001b[39m option\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 94 |\u001b[39m   }\n \u001b[90m 95 |\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-01-26T04:41:29.361Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium-retry1/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium-retry1/video.webm"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium-retry1/trace.zip"
+                            }
+                          ]
+                        },
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "timedOut",
+                          "duration": 120102,
+                          "error": {
+                            "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m",
+                            "stack": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                          },
+                          "errors": [
+                            {
+                              "message": "\u001b[31mTest timeout of 120000ms exceeded.\u001b[39m"
+                            },
+                            {
+                              "location": {
+                                "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                "column": 18,
+                                "line": 92
+                              },
+                              "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n\n\n   at ../page-objects/dataCatalogPage.js:92\n\n  90 |     const iframe = this.getIframe();\n  91 |     const option = iframe.getByTestId(lineageOption);\n> 92 |     await option.waitFor({ state: 'visible' });\n     |                  ^\n  93 |     await option.click();\n  94 |   }\n  95 |\n    at DataCatalogPage.selectNodeSuggestion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:92:18)\n    at DataCatalogPage.setupLineageView (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:172:16)\n    at DataCatalogPage.setupEntityDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:177:5)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:199:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:198:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Trying to click input element directly...\n"
+                            },
+                            {
+                              "text": "Successfully clicked input element\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 2,
+                          "steps": [
+                            {
+                              "title": "Setup entity details for advanced features testing",
+                              "duration": 118262,
+                              "error": {
+                                "message": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n",
+                                "stack": "Error: locator.waitFor: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('iframe').first().contentFrame().getByTestId('node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621') to be visible\u001b[22m\n\n    at DataCatalogPage.selectNodeSuggestion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:92:18)\n    at DataCatalogPage.setupLineageView (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:172:16)\n    at DataCatalogPage.setupEntityDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:177:5)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:199:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:198:7",
+                                "location": {
+                                  "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                  "column": 18,
+                                  "line": 92
+                                },
+                                "snippet": "   at ../page-objects/dataCatalogPage.js:92\n\n\u001b[0m \u001b[90m 90 |\u001b[39m     \u001b[36mconst\u001b[39m iframe \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetIframe()\u001b[33m;\u001b[39m\n \u001b[90m 91 |\u001b[39m     \u001b[36mconst\u001b[39m option \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(lineageOption)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 92 |\u001b[39m     \u001b[36mawait\u001b[39m option\u001b[33m.\u001b[39mwaitFor({ state\u001b[33m:\u001b[39m \u001b[32m'visible'\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 93 |\u001b[39m     \u001b[36mawait\u001b[39m option\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 94 |\u001b[39m   }\n \u001b[90m 95 |\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-01-26T04:43:34.032Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium-retry2/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--8f0fc-ll-tabs-and-functionalities-chromium-retry2/video.webm"
+                            }
+                          ]
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "b99128bf874cb2c020b6-770783d6fced3c7dcaa4",
+                  "file": "data-catalog.spec.js",
+                  "line": 197,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "dataAssistant.spec.js",
+      "file": "dataAssistant.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "@smoke Data Assistant Flow",
+          "file": "dataAssistant.spec.js",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete Data Assistant workflow - Catalog, Tables, Procedures, and Lineage",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31304,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                            "column": 35,
+                            "line": 33
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n\n   at ../page-objects/DataAssistantPage.js:33\n\n  31 |     await this.showTablesBtn.click();\n  32 |     // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\n> 33 |     await this.getTableDetailsBtn.click();\n     |                                   ^\n  34 |   }\n  35 |\n  36 |   async viewStoredProcedures() {\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1819
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1229
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 26977,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                              "column": 35,
+                              "line": 33
+                            },
+                            "snippet": "   at ../page-objects/DataAssistantPage.js:33\n\n\u001b[0m \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshowTablesBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[90m// await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetTableDetailsBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m   }\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m   \u001b[36masync\u001b[39m viewStoredProcedures() {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-01-26T04:45:34.799Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/error-context.md"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31331,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                            "column": 35,
+                            "line": 33
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n\n   at ../page-objects/DataAssistantPage.js:33\n\n  31 |     await this.showTablesBtn.click();\n  32 |     // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\n> 33 |     await this.getTableDetailsBtn.click();\n     |                                   ^\n  34 |   }\n  35 |\n  36 |   async viewStoredProcedures() {\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1954
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1252
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 27065,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                              "column": 35,
+                              "line": 33
+                            },
+                            "snippet": "   at ../page-objects/DataAssistantPage.js:33\n\n\u001b[0m \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshowTablesBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[90m// await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetTableDetailsBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m   }\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m   \u001b[36masync\u001b[39m viewStoredProcedures() {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-01-26T04:46:06.827Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31267,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                            "column": 35,
+                            "line": 33
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n\n   at ../page-objects/DataAssistantPage.js:33\n\n  31 |     await this.showTablesBtn.click();\n  32 |     // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\n> 33 |     await this.getTableDetailsBtn.click();\n     |                                   ^\n  34 |   }\n  35 |\n  36 |   async viewStoredProcedures() {\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1834
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1224
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 26973,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                              "column": 35,
+                              "line": 33
+                            },
+                            "snippet": "   at ../page-objects/DataAssistantPage.js:33\n\n\u001b[0m \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshowTablesBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[90m// await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetTableDetailsBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m   }\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m   \u001b[36masync\u001b[39m viewStoredProcedures() {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-01-26T04:46:39.099Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "eeb88c7cf421022f79c0-9dd2d6939c00f961c494",
+              "file": "dataAssistant.spec.js",
+              "line": 6,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tableau-to-powerbi.spec.js",
+      "file": "tableau-to-powerbi.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Tableau to Power BI Conversion",
+          "file": "tableau-to-powerbi.spec.js",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "@smoke Happy Path - Convert Tableau dashboard and download PDF",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31291,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/tableauToPowerBIPage.js",
+                            "column": 66,
+                            "line": 30
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Success', { exact: true })\nExpected: visible\nReceived: <element(s) not found>\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Success', { exact: true })\u001b[22m\n\n\n   at ../page-objects/tableauToPowerBIPage.js:30\n\n  28 |   async waitForConversionCompletion() {\n  29 |     // Wait for the conversion to complete and success status to appear\n> 30 |     await expect(this.page.getByText('Success',{ exact: true })).toBeVisible({ timeout: 30000 });\n     |                                                                  ^\n  31 |     console.log('✅ Conversion completed successfully');\n  32 |   }\n  33 |\n    at TableauToPowerBIPage.waitForConversionCompletion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/tableauToPowerBIPage.js:30:66)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/tableau-to-powerbi.spec.js:26:23"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-01-26T04:47:11.101Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium/video.webm"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31281,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/tableauToPowerBIPage.js",
+                            "column": 66,
+                            "line": 30
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Success', { exact: true })\nExpected: visible\nReceived: <element(s) not found>\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Success', { exact: true })\u001b[22m\n\n\n   at ../page-objects/tableauToPowerBIPage.js:30\n\n  28 |   async waitForConversionCompletion() {\n  29 |     // Wait for the conversion to complete and success status to appear\n> 30 |     await expect(this.page.getByText('Success',{ exact: true })).toBeVisible({ timeout: 30000 });\n     |                                                                  ^\n  31 |     console.log('✅ Conversion completed successfully');\n  32 |   }\n  33 |\n    at TableauToPowerBIPage.waitForConversionCompletion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/tableauToPowerBIPage.js:30:66)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/tableau-to-powerbi.spec.js:26:23"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "startTime": "2026-01-26T04:47:43.144Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium-retry1/trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31362,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/tableauToPowerBIPage.js",
+                            "column": 66,
+                            "line": 30
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m()\u001b[22m failed\n\nLocator:  getByText('Success', { exact: true })\nExpected: visible\nReceived: <element(s) not found>\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Success', { exact: true })\u001b[22m\n\n\n   at ../page-objects/tableauToPowerBIPage.js:30\n\n  28 |   async waitForConversionCompletion() {\n  29 |     // Wait for the conversion to complete and success status to appear\n> 30 |     await expect(this.page.getByText('Success',{ exact: true })).toBeVisible({ timeout: 30000 });\n     |                                                                  ^\n  31 |     console.log('✅ Conversion completed successfully');\n  32 |   }\n  33 |\n    at TableauToPowerBIPage.waitForConversionCompletion (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/tableauToPowerBIPage.js:30:66)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/tableau-to-powerbi.spec.js:26:23"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "startTime": "2026-01-26T04:48:15.342Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/tableau-to-powerbi-Tableau-62ec7--dashboard-and-download-PDF-chromium-retry2/video.webm"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "429b7a3e0171e67b0520-9e3f5f626f9f4ca28286",
+              "file": "tableau-to-powerbi.spec.js",
+              "line": 20,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-01-26T04:39:17.564Z",
+    "duration": 569292.548,
+    "expected": 1,
+    "skipped": 1,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}
