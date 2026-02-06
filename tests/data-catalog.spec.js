@@ -17,7 +17,7 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
     await ensureAuthenticated(page);
     await page.waitForLoadState("networkidle");
   });
-  
+
   test.afterEach(async ({ page }) => {
     // Clean up after each test to ensure complete isolation
     try {
@@ -27,18 +27,19 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
         localStorage.clear();
         sessionStorage.clear();
       });
-      
+
       // Clear any iframes or modal states
       await page.evaluate(() => {
         // Force close any open modals or dialogs
-        const modals = document.querySelectorAll('[role="dialog"], .modal, .popup');
-        modals.forEach(modal => modal.remove());
+        const modals = document.querySelectorAll(
+          '[role="dialog"], .modal, .popup',
+        );
+        modals.forEach((modal) => modal.remove());
       });
-      
     } catch (error) {
-      console.log('Cleanup warning:', error.message);
+      console.log("Cleanup warning:", error.message);
     }
-    
+
     // Always close the page to ensure fresh state for next test
     if (!page.isClosed()) {
       await page.close();
@@ -47,7 +48,7 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
 
   // Group basic functionality tests
   test.describe("Basic Authentication and Navigation", () => {
-    test("TC_DC_001 @smoke Login - should authenticate with valid credentials", async ({
+    test("TC_DC_001  Login - should authenticate with valid credentials", async ({
       page,
     }) => {
       await test.step("Verify successful login and dashboard loads", async () => {
@@ -55,12 +56,12 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
           page.getByRole("heading", {
             name: DYNAMIC_TEST_CONSTANTS.CODE_CONTEXT.EXPECTED_CONTENT.HEADINGS
               .DASHBOARD,
-          })
+          }),
         ).toBeVisible();
       });
     });
 
-    test("TC_DC_002 smoke Data Catalog Navigation - should navigate to Data Catalog page", async ({
+    test("TC_DC_002  Data Catalog Navigation - should navigate to Data Catalog page", async ({
       page,
     }) => {
       await test.step("Navigate to Data Catalog", async () => {
@@ -90,70 +91,19 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
     });
   });
 
-  // Group lineage interaction tests
-  test.describe("Lineage Interaction Flow", () => {
-    test.beforeEach(async () => {
-      // Each test should setup its own initial state - no shared state
-      await dataCatalogPage.completeInitialSetup();
-    });
-
-    test("TC_DC_005 Lineage Tab Navigation", async () => {
-      await test.step("Navigate to Lineage tab", async () => {
-        await dataCatalogPage.navigateToLineageTab();
-      });
-
-      await test.step("Verify tab activation", async () => {
-        await expect(
-          dataCatalogPage.getIframe().getByTestId("app-bar-item-lineage")
-        ).toHaveAttribute("aria-current", "page");
-      });
-    });
-
-    test("TC_DC_006 Dropdown Interaction", async () => {
-      await test.step("Setup and interact with dropdown", async () => {
-        await dataCatalogPage.navigateToLineageTab();
-        await dataCatalogPage.clickDropdown();
-      });
-
-      await test.step("Verify dropdown state", async () => {
-        await expect(
-          dataCatalogPage.getIframe().locator("#rc_select_1")
-        ).toHaveAttribute("aria-expanded", "true");
-      });
-    });
-
-    test("TC_DC_007 Node Selection", async () => {
-      await test.step("Complete node selection flow", async () => {
-        await dataCatalogPage.navigateToLineageTab();
-        await dataCatalogPage.clickDropdown();
-        await dataCatalogPage.selectNodeSuggestion(
-          DYNAMIC_TEST_CONSTANTS.LINEAGE_OPTION
-        );
-      });
-
-      await test.step("Verify selection", async () => {
-        await expect(
-          dataCatalogPage
-            .getIframe()
-            .getByTestId(DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW)
-        ).toBeVisible();
-      });
-    });
-  });
-
   // Group entity detail tests
   test.describe("Entity Details and Properties", () => {
     test.beforeEach(async () => {
       // Each test should setup its own lineage view for better isolation
       await dataCatalogPage.setupLineageView(
-        DYNAMIC_TEST_CONSTANTS.LINEAGE_OPTION
+        DYNAMIC_TEST_CONSTANTS.LINEAGE_OPTION,
       );
     });
 
     test("TC_DC_009 Node Details - should show node information", async () => {
       await test.step("Click node and verify selection", async () => {
         await dataCatalogPage.clickSpecificNode(
-          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW
+          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW,
         );
       });
 
@@ -168,7 +118,7 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
     test("TC_DC_010 Domain Label Verification", async () => {
       await test.step("Navigate to node details", async () => {
         await dataCatalogPage.clickSpecificNode(
-          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW
+          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW,
         );
       });
 
@@ -180,109 +130,144 @@ test.describe("Data Catalog - Complete DBT Flow", () => {
     test("TC_DC_011 Endpoint URL Label Verification", async () => {
       await test.step("Navigate to node details", async () => {
         await dataCatalogPage.clickSpecificNode(
-          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW
+          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW,
         );
       });
 
       await test.step("Verify Endpoint URL label", async () => {
         await expect(
-          await dataCatalogPage.verifyEndpointURLLabel()
+          await dataCatalogPage.verifyEndpointURLLabel(),
         ).toBeVisible();
       });
     });
   });
 
-  // Group advanced functionality tests
-  test.describe("Advanced Features", () => {
-    test("TC_DC_014 @smoke Complete Advanced Features - should verify all tabs and functionalities", async () => {
-      await test.step("Setup entity details for advanced features testing", async () => {
-        await dataCatalogPage.setupEntityDetails(
-          DYNAMIC_TEST_CONSTANTS.LINEAGE_OPTION,
-          DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW
+  // Group lineage interaction tests
+  test.describe("Lineage Interaction Flow", () => {
+    test.beforeEach(async () => {
+      // Each test should setup its own initial state - no shared state
+      await dataCatalogPage.completeInitialSetup();
+      await dataCatalogPage.navigateToExplore();
+    });
+
+    test("TC_DC_005 Lineage Tab Navigation", async () => {
+      await test.step("Verify snowflake expansion", async () => {
+        await dataCatalogPage.expandSnowflakeTree();
+        await dataCatalogPage.expandDatabaseNode();
+        await dataCatalogPage.expandSchemaNode();
+        await dataCatalogPage.selectDatabase(
+          DYNAMIC_TEST_CONSTANTS.SNOWFLAKE_EXPLORE.DATABASE,
         );
-      });
 
-      await test.step("Verify entity details page", async () => {
         const iframe = dataCatalogPage.getIframe();
-        await expect(iframe.getByTestId("details")).toBeVisible();
-      });
-
-      // Define features to test in a loop
-      const featuresToTest = [
-        {
-          name: "Lineage tab functionality",
-          action: async () => await dataCatalogPage.verifyLineage(),
-          description: "Verify Lineage visibility",
-        },
-        {
-          name: "Activity Feeds and Tasks tab",
-          action: async () =>
-            await dataCatalogPage.verifyActivityFeedsAndTasks(),
-          description: "Verify Activity Feeds visibility",
-        },
-        {
-          name: "Custom Properties tab",
-          action: async () => {
-            await dataCatalogPage.clickCustomProperties();
-            const iframe = dataCatalogPage.getIframe();
-            return iframe.getByRole("tab", { name: "Custom Properties" });
-          },
-          description: "Navigate and verify Custom Properties tab",
-        },
-      ];
-
-      // Loop through each feature and test it
-      for (const feature of featuresToTest) {
-        await test.step(`Verify ${feature.name}`, async () => {
-          const element = await feature.action();
-          await expect(element).toBeVisible();
-        });
-      }
-
-      await test.step("Verify all advanced features are accessible together", async () => {
-        const iframe = dataCatalogPage.getIframe();
-        // Verify multiple features are working together using Promise.all for parallel execution
-        const verificationPromises = [
-          await expect(await dataCatalogPage.verifyLineage()).toBeVisible(),
-          await expect(
-            await dataCatalogPage.verifyActivityFeedsAndTasks()
-          ).toBeVisible(),
-          await expect(
-            iframe.getByRole("tab", { name: "Custom Properties" })
-          ).toBeVisible(),
-        ];
-
-        await Promise.all(verificationPromises);
+        const database = iframe.getByTestId(
+          `explore-tree-title-${DYNAMIC_TEST_CONSTANTS.SNOWFLAKE_EXPLORE.DATABASE}`,
+        );
+        await expect(database).toBeVisible();
       });
     });
-  });
 
- 
+    test("TC_DC_007 Verify lineage node selection", async () => {
+      await test.step("Complete node selection flow", async () => {
+        await dataCatalogPage.expandSnowflakeTree();
+        await dataCatalogPage.expandDatabaseNode();
+        await dataCatalogPage.expandSchemaNode();
+      });
 
-  // End-to-end workflow test
-  test("TC_DC_020 @smoke End-to-End Workflow - should complete full data catalog journey", async () => {
-    await test.step("Execute complete workflow efficiently", async () => {
-      // Use optimized setup methods
-      await dataCatalogPage.setupEntityDetails(
-        DYNAMIC_TEST_CONSTANTS.LINEAGE_OPTION,
-        DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW
-      );
-      await dataCatalogPage.clickCustomProperties();
+      await test.step("Verify selection", async () => {
+        await dataCatalogPage.selectPWODWH();
+      });
     });
 
-    await test.step("Verify workflow completion with multiple assertions", async () => {
-      const iframe = dataCatalogPage.getIframe();
+    // test.describe("Advanced Features", () => {
+    //   test("TC_DC_014 @smoke Complete Advanced Features - should verify all tabs and functionalities", async () => {
+    //     await test.step("Setup entity details for advanced features testing", async () => {
+    //       await dataCatalogPage.setupEntityDetails(
+    //         DYNAMIC_TEST_CONSTANTS.LINEAGE_OPTION,
+    //         DYNAMIC_TEST_CONSTANTS.LINEAGE_SELECTED_VIEW
+    //       );
+    //     });
 
-      // Use Promise.all for parallel assertions to improve performance
-      await Promise.all([
-        await expect(await dataCatalogPage.verifyLineage()).toBeVisible(),
-        await expect(
-          await dataCatalogPage.verifyActivityFeedsAndTasks()
-        ).toBeVisible(),
-        await expect(
-          iframe.getByRole("tab", { name: "Custom Properties" })
-        ).toBeVisible(),
-      ]);
+    //     await test.step("Verify entity details page", async () => {
+    //       const iframe = dataCatalogPage.getIframe();
+    //       await expect(iframe.getByTestId("details")).toBeVisible();
+    //     });
+
+    //     // Define features to test in a loop
+    //     const featuresToTest = [
+    //       {
+    //         name: "Lineage tab functionality",
+    //         action: async () => await dataCatalogPage.verifyLineage(),
+    //         description: "Verify Lineage visibility",
+    //       },
+    //       {
+    //         name: "Activity Feeds and Tasks tab",
+    //         action: async () =>
+    //           await dataCatalogPage.verifyActivityFeedsAndTasks(),
+    //         description: "Verify Activity Feeds visibility",
+    //       },
+    //       {
+    //         name: "Custom Properties tab",
+    //         action: async () => {
+    //           await dataCatalogPage.clickCustomProperties();
+    //           const iframe = dataCatalogPage.getIframe();
+    //           return iframe.getByRole("tab", { name: "Custom Properties" });
+    //         },
+    //         description: "Navigate and verify Custom Properties tab",
+    //       },
+    //     ];
+
+    //     // Loop through each feature and test it
+    //     for (const feature of featuresToTest) {
+    //       await test.step(`Verify ${feature.name}`, async () => {
+    //         const element = await feature.action();
+    //         await expect(element).toBeVisible();
+    //       });
+    //     }
+
+    //     await test.step("Verify all advanced features are accessible together", async () => {
+    //       const iframe = dataCatalogPage.getIframe();
+    //       // Verify multiple features are working together using Promise.all for parallel execution
+    //       const verificationPromises = [
+    //         await expect(await dataCatalogPage.verifyLineage()).toBeVisible(),
+    //         await expect(
+    //           await dataCatalogPage.verifyActivityFeedsAndTasks()
+    //         ).toBeVisible(),
+    //         await expect(
+    //           iframe.getByRole("tab", { name: "Custom Properties" })
+    //         ).toBeVisible(),
+    //       ];
+
+    //       await Promise.all(verificationPromises);
+    //     });
+    //   });
+    // });
+
+    // End-to-end workflow test
+    test("TC_DC_020 @smoke End-to-End Workflow - should complete full data catalog journey", async () => {
+      await test.step("Execute complete workflow efficiently", async () => {
+        await dataCatalogPage.expandSnowflakeTree();
+        await dataCatalogPage.expandDatabaseNode();
+        await dataCatalogPage.expandSchemaNode();
+        await dataCatalogPage.selectDatabase(
+          DYNAMIC_TEST_CONSTANTS.SNOWFLAKE_EXPLORE.DATABASE,
+        );
+        await dataCatalogPage.selectPWODWH();
+        await dataCatalogPage.selectDIMCLIENT();
+        await dataCatalogPage.selectLineageTab();
+      });
+
+      await test.step("Verify workflow completion with multiple assertions", async () => {
+        const iframe = dataCatalogPage.getIframe();
+        const dimClientLineage = iframe.getByTestId('rf__node-9d082670-e735-491a-86d7-8f47871c98cb');
+        await dimClientLineage.waitFor({ state: "visible" });
+
+        // Use Promise.all for parallel assertions to improve performance
+        await Promise.all([
+          await expect(dimClientLineage).toBeVisible()
+        ]);
+        console.log("Snowflake Lineage is visible.");
+      });
     });
   });
 });

@@ -218,7 +218,19 @@ export const DYNAMIC_TEST_CONSTANTS = {
   BROWSER: BROWSER_CONFIG,
   HELPERS: DYNAMIC_HELPERS,
   LINEAGE_OPTION: 'node-suggestion-Blend_dashboards.454afeb9-7cbc-40ab-a75b-85b757fb3621',
-  LINEAGE_SELECTED_VIEW: 'rf__node-5ac82eb0-a2c7-4318-930a-9810470362c9'
+  LINEAGE_SELECTED_VIEW: 'rf__node-5ac82eb0-a2c7-4318-930a-9810470362c9',
+  
+  // Snowflake Explore Navigation Configuration
+  SNOWFLAKE_EXPLORE: {
+    DATABASE: 'PROD_DWH',
+    TABLE_IDENTIFIER: 'table-data-card_snowflake_paro.PROD_DWH.SRC__LEGACY_WAREHOUSE__ADAPTIVEAI',
+    PAGE_NUMBER: 2,
+    BREADCRUMBS: {
+      DWH: 'DWH',
+      DIM_CLIENT: 'DIM_CLIENT'
+    },
+    LINEAGE_NODE: 'rf__node-9d082670-e735-491a-86d7-8f47871c98cb'
+  }
 };
 
 // Legacy compatibility - export individual components
