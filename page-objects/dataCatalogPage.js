@@ -224,8 +224,27 @@ export class DataCatalogPage {
 
   async selectDatabase(databaseName) {
     const iframe = this.getIframe();
+    // Ensure iframe body is loaded before proceeding
+    try {
+      await expect(iframe.locator('body')).toBeVisible({ timeout: 60000 });
+    } catch (err) {
+      // Log iframe src and take screenshot for debugging
+      const iframeElement = await this.page.$('iframe');
+      const src = iframeElement ? await iframeElement.getAttribute('src') : 'iframe not found';
+      console.log('Iframe body not visible. Src:', src);
+      await this.page.screenshot({ path: 'iframe_load_failure.png', fullPage: true });
+      throw new Error('Iframe body not visible, see screenshot and logs for details.');
+    }
+
     const database = iframe.getByTestId(`explore-tree-title-${databaseName}`);
-    await database.waitFor({ state: 'visible' });
+    try {
+      await database.waitFor({ state: 'visible', timeout: 60000 });
+    } catch (err) {
+      // Log and screenshot if database element is not visible
+      console.log(`Database element explore-tree-title-${databaseName} not visible.`);
+      await this.page.screenshot({ path: `database_load_failure_${databaseName}.png`, fullPage: true });
+      throw new Error(`Database element explore-tree-title-${databaseName} not visible, see screenshot.`);
+    }
     await database.click();
   }
 
