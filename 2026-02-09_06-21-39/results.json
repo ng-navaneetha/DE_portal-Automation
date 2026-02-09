@@ -1,0 +1,670 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/playwright.config.js",
+    "rootDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/tests",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 3600000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/ng-navaneetha/DE_portal_Automation/commit/3be84d9b40cb1d717f520cee8c8446bd817a216d",
+        "commitHash": "3be84d9b40cb1d717f520cee8c8446bd817a216d",
+        "buildHref": "https://github.com/ng-navaneetha/DE_portal_Automation/actions/runs/21814532338"
+      },
+      "gitCommit": {
+        "shortHash": "3be84d9",
+        "hash": "3be84d9b40cb1d717f520cee8c8446bd817a216d",
+        "subject": "refactor: Improve iframe loading and error handling in selectDatabase method",
+        "body": "refactor: Improve iframe loading and error handling in selectDatabase method\n",
+        "author": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1770617879000
+        },
+        "committer": {
+          "name": "ng-navaneetha",
+          "email": "navaneetha.b@ngenux.com",
+          "time": 1770617879000
+        },
+        "branch": "testing_branch"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./results.json"
+        }
+      ],
+      [
+        "github",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results",
+        "repeatEach": 1,
+        "retries": 2,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/ng-navaneetha/DE_portal_Automation/commit/3be84d9b40cb1d717f520cee8c8446bd817a216d",
+            "commitHash": "3be84d9b40cb1d717f520cee8c8446bd817a216d",
+            "buildHref": "https://github.com/ng-navaneetha/DE_portal_Automation/actions/runs/21814532338"
+          },
+          "gitCommit": {
+            "shortHash": "3be84d9",
+            "hash": "3be84d9b40cb1d717f520cee8c8446bd817a216d",
+            "subject": "refactor: Improve iframe loading and error handling in selectDatabase method",
+            "body": "refactor: Improve iframe loading and error handling in selectDatabase method\n",
+            "author": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1770617879000
+            },
+            "committer": {
+              "name": "ng-navaneetha",
+              "email": "navaneetha.b@ngenux.com",
+              "time": 1770617879000
+            },
+            "branch": "testing_branch"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "data-catalog.spec.js",
+      "file": "data-catalog.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Data Catalog - Complete DBT Flow",
+          "file": "data-catalog.spec.js",
+          "line": 11,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Lineage Interaction Flow",
+              "file": "data-catalog.spec.js",
+              "line": 146,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "TC_DC_020 @smoke End-to-End Workflow - should complete full data catalog journey",
+                  "ok": false,
+                  "tags": [
+                    "smoke"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 120000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 13433,
+                          "error": {
+                            "message": "Error: Iframe body not visible, see screenshot and logs for details.",
+                            "stack": "Error: Iframe body not visible, see screenshot and logs for details.\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                              "column": 13,
+                              "line": 236
+                            },
+                            "snippet": "   at ../page-objects/dataCatalogPage.js:236\n\n\u001b[0m \u001b[90m 234 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Iframe body not visible. Src:'\u001b[39m\u001b[33m,\u001b[39m src)\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'iframe_load_failure.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 236 |\u001b[39m       \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Iframe body not visible, see screenshot and logs for details.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 237 |\u001b[39m     }\n \u001b[90m 238 |\u001b[39m\n \u001b[90m 239 |\u001b[39m     \u001b[36mconst\u001b[39m database \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`explore-tree-title-${databaseName}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                "column": 13,
+                                "line": 236
+                              },
+                              "message": "Error: Iframe body not visible, see screenshot and logs for details.\n\n   at ../page-objects/dataCatalogPage.js:236\n\n  234 |       console.log('Iframe body not visible. Src:', src);\n  235 |       await this.page.screenshot({ path: 'iframe_load_failure.png', fullPage: true });\n> 236 |       throw new Error('Iframe body not visible, see screenshot and logs for details.');\n      |             ^\n  237 |     }\n  238 |\n  239 |     const database = iframe.getByTestId(`explore-tree-title-${databaseName}`);\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "Creating new auth session...\n"
+                            },
+                            {
+                              "text": "Auth session saved successfully\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Iframe body not visible. Src: https://de-hub.metadata.ngenux.app/\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "Execute complete workflow efficiently",
+                              "duration": 1841,
+                              "error": {
+                                "message": "Error: Iframe body not visible, see screenshot and logs for details.",
+                                "stack": "Error: Iframe body not visible, see screenshot and logs for details.\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7",
+                                "location": {
+                                  "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                  "column": 13,
+                                  "line": 236
+                                },
+                                "snippet": "   at ../page-objects/dataCatalogPage.js:236\n\n\u001b[0m \u001b[90m 234 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Iframe body not visible. Src:'\u001b[39m\u001b[33m,\u001b[39m src)\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'iframe_load_failure.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 236 |\u001b[39m       \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Iframe body not visible, see screenshot and logs for details.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 237 |\u001b[39m     }\n \u001b[90m 238 |\u001b[39m\n \u001b[90m 239 |\u001b[39m     \u001b[36mconst\u001b[39m database \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`explore-tree-title-${databaseName}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-09T06:19:27.101Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium/video.webm"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                            "column": 13,
+                            "line": 236
+                          }
+                        },
+                        {
+                          "workerIndex": 1,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 10841,
+                          "error": {
+                            "message": "Error: Iframe body not visible, see screenshot and logs for details.",
+                            "stack": "Error: Iframe body not visible, see screenshot and logs for details.\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                              "column": 13,
+                              "line": 236
+                            },
+                            "snippet": "   at ../page-objects/dataCatalogPage.js:236\n\n\u001b[0m \u001b[90m 234 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Iframe body not visible. Src:'\u001b[39m\u001b[33m,\u001b[39m src)\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'iframe_load_failure.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 236 |\u001b[39m       \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Iframe body not visible, see screenshot and logs for details.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 237 |\u001b[39m     }\n \u001b[90m 238 |\u001b[39m\n \u001b[90m 239 |\u001b[39m     \u001b[36mconst\u001b[39m database \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`explore-tree-title-${databaseName}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                "column": 13,
+                                "line": 236
+                              },
+                              "message": "Error: Iframe body not visible, see screenshot and logs for details.\n\n   at ../page-objects/dataCatalogPage.js:236\n\n  234 |       console.log('Iframe body not visible. Src:', src);\n  235 |       await this.page.screenshot({ path: 'iframe_load_failure.png', fullPage: true });\n> 236 |       throw new Error('Iframe body not visible, see screenshot and logs for details.');\n      |             ^\n  237 |     }\n  238 |\n  239 |     const database = iframe.getByTestId(`explore-tree-title-${databaseName}`);\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "Using existing auth session...\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Iframe body not visible. Src: https://de-hub.metadata.ngenux.app/\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 1,
+                          "steps": [
+                            {
+                              "title": "Execute complete workflow efficiently",
+                              "duration": 2136,
+                              "error": {
+                                "message": "Error: Iframe body not visible, see screenshot and logs for details.",
+                                "stack": "Error: Iframe body not visible, see screenshot and logs for details.\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7",
+                                "location": {
+                                  "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                  "column": 13,
+                                  "line": 236
+                                },
+                                "snippet": "   at ../page-objects/dataCatalogPage.js:236\n\n\u001b[0m \u001b[90m 234 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Iframe body not visible. Src:'\u001b[39m\u001b[33m,\u001b[39m src)\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'iframe_load_failure.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 236 |\u001b[39m       \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Iframe body not visible, see screenshot and logs for details.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 237 |\u001b[39m     }\n \u001b[90m 238 |\u001b[39m\n \u001b[90m 239 |\u001b[39m     \u001b[36mconst\u001b[39m database \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`explore-tree-title-${databaseName}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-09T06:19:41.366Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium-retry1/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium-retry1/video.webm"
+                            },
+                            {
+                              "name": "trace",
+                              "contentType": "application/zip",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium-retry1/trace.zip"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                            "column": 13,
+                            "line": 236
+                          }
+                        },
+                        {
+                          "workerIndex": 2,
+                          "parallelIndex": 0,
+                          "status": "failed",
+                          "duration": 9547,
+                          "error": {
+                            "message": "Error: Iframe body not visible, see screenshot and logs for details.",
+                            "stack": "Error: Iframe body not visible, see screenshot and logs for details.\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                              "column": 13,
+                              "line": 236
+                            },
+                            "snippet": "   at ../page-objects/dataCatalogPage.js:236\n\n\u001b[0m \u001b[90m 234 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Iframe body not visible. Src:'\u001b[39m\u001b[33m,\u001b[39m src)\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'iframe_load_failure.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 236 |\u001b[39m       \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Iframe body not visible, see screenshot and logs for details.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 237 |\u001b[39m     }\n \u001b[90m 238 |\u001b[39m\n \u001b[90m 239 |\u001b[39m     \u001b[36mconst\u001b[39m database \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`explore-tree-title-${databaseName}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                          },
+                          "errors": [
+                            {
+                              "location": {
+                                "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                "column": 13,
+                                "line": 236
+                              },
+                              "message": "Error: Iframe body not visible, see screenshot and logs for details.\n\n   at ../page-objects/dataCatalogPage.js:236\n\n  234 |       console.log('Iframe body not visible. Src:', src);\n  235 |       await this.page.screenshot({ path: 'iframe_load_failure.png', fullPage: true });\n> 236 |       throw new Error('Iframe body not visible, see screenshot and logs for details.');\n      |             ^\n  237 |     }\n  238 |\n  239 |     const database = iframe.getByTestId(`explore-tree-title-${databaseName}`);\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7"
+                            }
+                          ],
+                          "stdout": [
+                            {
+                              "text": "Using existing auth session...\n"
+                            },
+                            {
+                              "text": "Already authenticated, proceeding with tests...\n"
+                            },
+                            {
+                              "text": "Iframe body not visible. Src: https://de-hub.metadata.ngenux.app/\n"
+                            }
+                          ],
+                          "stderr": [],
+                          "retry": 2,
+                          "steps": [
+                            {
+                              "title": "Execute complete workflow efficiently",
+                              "duration": 1900,
+                              "error": {
+                                "message": "Error: Iframe body not visible, see screenshot and logs for details.",
+                                "stack": "Error: Iframe body not visible, see screenshot and logs for details.\n    at DataCatalogPage.selectDatabase (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js:236:13)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:252:9\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/data-catalog.spec.js:248:7",
+                                "location": {
+                                  "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                                  "column": 13,
+                                  "line": 236
+                                },
+                                "snippet": "   at ../page-objects/dataCatalogPage.js:236\n\n\u001b[0m \u001b[90m 234 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'Iframe body not visible. Src:'\u001b[39m\u001b[33m,\u001b[39m src)\u001b[33m;\u001b[39m\n \u001b[90m 235 |\u001b[39m       \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mpage\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m'iframe_load_failure.png'\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 236 |\u001b[39m       \u001b[36mthrow\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mError\u001b[39m(\u001b[32m'Iframe body not visible, see screenshot and logs for details.'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 237 |\u001b[39m     }\n \u001b[90m 238 |\u001b[39m\n \u001b[90m 239 |\u001b[39m     \u001b[36mconst\u001b[39m database \u001b[33m=\u001b[39m iframe\u001b[33m.\u001b[39mgetByTestId(\u001b[32m`explore-tree-title-${databaseName}`\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                              }
+                            }
+                          ],
+                          "startTime": "2026-02-09T06:19:53.244Z",
+                          "annotations": [],
+                          "attachments": [
+                            {
+                              "name": "screenshot",
+                              "contentType": "image/png",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium-retry2/test-failed-1.png"
+                            },
+                            {
+                              "name": "video",
+                              "contentType": "video/webm",
+                              "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/data-catalog-Data-Catalog--c539d-e-full-data-catalog-journey-chromium-retry2/video.webm"
+                            }
+                          ],
+                          "errorLocation": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/dataCatalogPage.js",
+                            "column": 13,
+                            "line": 236
+                          }
+                        }
+                      ],
+                      "status": "unexpected"
+                    }
+                  ],
+                  "id": "b99128bf874cb2c020b6-33b334261105fce48ebf",
+                  "file": "data-catalog.spec.js",
+                  "line": 247,
+                  "column": 9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "dataAssistant.spec.js",
+      "file": "dataAssistant.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "@smoke Data Assistant Flow",
+          "file": "dataAssistant.spec.js",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Complete Data Assistant workflow - Catalog, Tables, Procedures, and Lineage",
+              "ok": false,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31288,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                            "column": 35,
+                            "line": 33
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n\n   at ../page-objects/DataAssistantPage.js:33\n\n  31 |     await this.showTablesBtn.click();\n  32 |     // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\n> 33 |     await this.getTableDetailsBtn.click();\n     |                                   ^\n  34 |   }\n  35 |\n  36 |   async viewStoredProcedures() {\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1066
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1244
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 27726,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                              "column": 35,
+                              "line": 33
+                            },
+                            "snippet": "   at ../page-objects/DataAssistantPage.js:33\n\n\u001b[0m \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshowTablesBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[90m// await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetTableDetailsBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m   }\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m   \u001b[36masync\u001b[39m viewStoredProcedures() {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-02-09T06:20:03.486Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium/error-context.md"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31367,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                            "column": 35,
+                            "line": 33
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n\n   at ../page-objects/DataAssistantPage.js:33\n\n  31 |     await this.showTablesBtn.click();\n  32 |     // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\n> 33 |     await this.getTableDetailsBtn.click();\n     |                                   ^\n  34 |   }\n  35 |\n  36 |   async viewStoredProcedures() {\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 1,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1096
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1259
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 27882,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                              "column": 35,
+                              "line": 33
+                            },
+                            "snippet": "   at ../page-objects/DataAssistantPage.js:33\n\n\u001b[0m \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshowTablesBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[90m// await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetTableDetailsBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m   }\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m   \u001b[36masync\u001b[39m viewStoredProcedures() {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-02-09T06:20:35.472Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry1/trace.zip"
+                        }
+                      ]
+                    },
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "timedOut",
+                      "duration": 31249,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                            "column": 35,
+                            "line": 33
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n\n   at ../page-objects/DataAssistantPage.js:33\n\n  31 |     await this.showTablesBtn.click();\n  32 |     // await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\n> 33 |     await this.getTableDetailsBtn.click();\n     |                                   ^\n  34 |   }\n  35 |\n  36 |   async viewStoredProcedures() {\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "Using existing auth session...\n"
+                        },
+                        {
+                          "text": "Already authenticated, proceeding with tests...\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 2,
+                      "steps": [
+                        {
+                          "title": "Authenticate and open Data Assistant",
+                          "duration": 1455
+                        },
+                        {
+                          "title": "Explore Data Catalog",
+                          "duration": 1224
+                        },
+                        {
+                          "title": "View Tables and Get Details",
+                          "duration": 27343,
+                          "error": {
+                            "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n",
+                            "stack": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Get table details' })\u001b[22m\n\n    at DataAssistantPage.viewTablesAndDetails (/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js:33:35)\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:20:7\n    at /home/runner/work/DE_portal_Automation/DE_portal_Automation/tests/dataAssistant.spec.js:19:5",
+                            "location": {
+                              "file": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/page-objects/DataAssistantPage.js",
+                              "column": 35,
+                              "line": 33
+                            },
+                            "snippet": "   at ../page-objects/DataAssistantPage.js:33\n\n\u001b[0m \u001b[90m 31 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mshowTablesBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[90m// await expect(this.page.getByText('Here are some tables from your data catalog:')).toBeVisible();\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 33 |\u001b[39m     \u001b[36mawait\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetTableDetailsBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 34 |\u001b[39m   }\n \u001b[90m 35 |\u001b[39m\n \u001b[90m 36 |\u001b[39m   \u001b[36masync\u001b[39m viewStoredProcedures() {\u001b[0m"
+                          }
+                        }
+                      ],
+                      "startTime": "2026-02-09T06:21:07.745Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/runner/work/DE_portal_Automation/DE_portal_Automation/test-results/dataAssistant--smoke-Data--2e116-bles-Procedures-and-Lineage-chromium-retry2/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "eeb88c7cf421022f79c0-9dd2d6939c00f961c494",
+              "file": "dataAssistant.spec.js",
+              "line": 6,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-02-09T06:19:26.284Z",
+    "duration": 132835.18300000002,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
